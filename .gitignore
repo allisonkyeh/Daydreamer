@@ -2,14 +2,14 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-# EDIT: Removed / in front of file paths to keep .gitignore at project root
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-[Ll]ogs/
-[Mm]emoryCaptures/
+# EDIT: used to just be /, but added /Daydreamer/
+/Daydreamer/[Ll]ibrary/
+/Daydreamer/[Tt]emp/
+/Daydreamer/[Oo]bj/
+/Daydreamer/[Bb]uild/
+/Daydreamer/[Bb]uilds/
+/Daydreamer/[Ll]ogs/
+/Daydreamer/[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
