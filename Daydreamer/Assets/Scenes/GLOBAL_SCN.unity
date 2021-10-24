@@ -721,13 +721,16 @@ MonoBehaviour:
   minX: -4
   maxX: 24
   minZ: -24
+  roomMask:
+    serializedVersion: 2
+    m_Bits: 256
   startingPositions:
   - {fileID: 896102337}
   rooms:
-  - {fileID: 919132149155446097, guid: f32a336d58c3a4fea8dfcf7db175ef94, type: 3}
-  - {fileID: 919132149155446097, guid: 95962257c1f60448c85ee99ac7dd733a, type: 3}
-  - {fileID: 919132149155446097, guid: 69c637dbe73c049c2820121d0a561d33, type: 3}
-  - {fileID: 919132149155446097, guid: 85c8de8b8e30a484c81320d24eb4ac5c, type: 3}
+  - {fileID: 3149699673548459503, guid: cf64bb41a7977431997017bdb06d3e16, type: 3}
+  - {fileID: 946514841994789612, guid: 8e948f9fb75244c3caf8c5f97d83f6cc, type: 3}
+  - {fileID: 5067150164498524364, guid: d234a5026770b482a92a2c52bfe77efc, type: 3}
+  - {fileID: 7213662855852435535, guid: fda42c146431049f7a579f959f66aeb3, type: 3}
 --- !u!4 &649653004
 Transform:
   m_ObjectHideFlags: 0

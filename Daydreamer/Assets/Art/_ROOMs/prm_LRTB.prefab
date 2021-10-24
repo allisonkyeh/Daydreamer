@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6410908274819661136}
   - component: {fileID: 9159451197729147290}
   - component: {fileID: 7103371969280541493}
-  m_Layer: 0
+  - component: {fileID: 7401247973604994024}
+  m_Layer: 8
   m_Name: prm_LRTB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 41ae207cacc47470f9d9015a696e9b39, type: 2}
+  - {fileID: 2100000, guid: 3807c71d6aee84f42a1deaa7cb4ff679, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,3 +96,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
+--- !u!65 &7401247973604994024
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7213662855852435535}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99999994, y: 1, z: 1}
+  m_Center: {x: 0.000000029802322, y: 0.5, z: 0}
