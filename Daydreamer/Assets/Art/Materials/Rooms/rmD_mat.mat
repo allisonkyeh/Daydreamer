@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: room3_mat
+  m_Name: rmD_mat
   m_Shader: {fileID: -6465566751694194690, guid: d1eb06f58c6d14f0d8b7d81464f9f4d5, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -33,7 +33,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _ColorRange: 0
-    - _FogDensity: 0.919
+    - _FogDensity: 0.763
     m_Colors:
-    - _FogColor: {r: 0.80569124, g: 1, b: 0, a: 1}
+    - _FogColor: {r: 0.8773585, g: 0.4648952, b: 0, a: 1}
   m_BuildTextureStacks: []

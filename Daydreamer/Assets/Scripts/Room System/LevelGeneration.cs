@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomGeneration : MonoBehaviour
+public class LevelGeneration : MonoBehaviour
 {
     // edited to move along x and z axis; x being LR, z being down
     private int direction;
