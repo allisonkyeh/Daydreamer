@@ -39,14 +39,13 @@ public class LevelGeneration : MonoBehaviour
 
     private void Update()
     {
-
+        // TODO - switch to if player nears exit
         if (timeBtwRoom <= 0 && stopGeneration == false) {
             Move();
             timeBtwRoom = startTimeBtwRoom;
         } else {
             timeBtwRoom -= Time.deltaTime;
         }
-
     }
 
     private void Move()
@@ -94,6 +93,7 @@ public class LevelGeneration : MonoBehaviour
             if (transform.position.z > minZ) {
 
                 // cast sphere to detect current 0: this is before moving
+                // don't forget to set room layermask on room prefabs and RoomGeneration script
                 Vector3 offset = new Vector3(transform.position.x, transform.position.y, transform.position.z);
                 Collider[] roomDetection = Physics.OverlapSphere(transform.position, 1, roomMask);
 
@@ -103,15 +103,15 @@ public class LevelGeneration : MonoBehaviour
                 // }
 
                 // if no bottom opening, destroy and spawn a correct room
-                if (roomDetection[0].GetComponent<RoomType>().type != 1 && roomDetection[0].GetComponent<RoomType>().type != 3) {
+                if (roomDetection[0].GetComponent<LevelType>().type != 1 && roomDetection[0].GetComponent<LevelType>().type != 3) {
                      if (downCounter >= 2) {
-                        roomDetection[0].GetComponent<RoomType>().RoomDestruction();
+                        roomDetection[0].GetComponent<LevelType>().LevelDestruction();
                         Debug.Log(roomDetection[0].gameObject.name + " DESTROYED!!!!!!!!!");
 
                         Instantiate(rooms[3], transform.position, Quaternion.identity);
                         Debug.Log(rooms[3].gameObject.name + " INSTANTIATED!!!!!!!!");
                      } else {
-                        roomDetection[0].GetComponent<RoomType>().RoomDestruction();
+                        roomDetection[0].GetComponent<LevelType>().LevelDestruction();
                         Debug.Log(roomDetection[0].gameObject.name + " DESTROYED!!!!");
 
                         int randBottomRoom = Random.Range(1, 4);
