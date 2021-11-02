@@ -6,152 +6,95 @@ using UnityEngine;
 
 public class RoomGeneration : MonoBehaviour
 {
-    private int currentRoom;    // keeps track of current room, need offset
-    private int nextRoom;     // next room to activate
-    private Vector3 moveAmount;   // amount to move generator gameobj
+    private GameObject currentRoom;         // keeps track of current room, for offset
+    private GameObject nextRoom;            // next room to activate
+    private Vector3 moveAmount;             // amount to move generator gameobj
 
-    public LayerMask roomMask;  // makes sure only detect rooms and not other objs w/colliders
     private int downCounter;
 
-    public GameObject player;   // for detecting collisions/near
-    // private Transform childCollider;
-    private Collider col;
+    public GameObject player;               // PLAYER
+    private Collider playerCol;
 
     public Transform[] startingPositions;
-    public GameObject[] rooms;
-    // make sure you're using the prefab rooms with setup, not just the plain fbxs
+    public GameObject[] rooms;              // make sure you're using the prefab rooms with setup, not just the plain fbxs
 
-    // Start is called before the first frame update
+    private int activeNum;                  // number of active rooms
+    private int activeMax = 2;              // max number of active rooms allowed
+    private List<GameObject> activeRooms;   // list of rooms visited that are currently active??
+                                            // activeRooms.First() should be current room
+
     private void Start()
     {
-        // picks one random starting position if multiple
-        // maybe get rid of this if everyone starts at same place
+        // picks one random starting position if multiple, maybe get rid of this if everyone starts at same place
         int randStartingPos = Random.Range(0, startingPositions.Length);
         transform.position = startingPositions[randStartingPos].position;
 
-        // instantiate first room
-        Instantiate(rooms[0], transform.position, Quaternion.identity);
-        currentRoom = 0;
+        // Setup first room
+        currentRoom = rooms[0];
+        Instantiate(currentRoom, transform.position, Quaternion.identity);
+        activeRooms.Add(currentRoom);
+        activeNum = 1;
 
         // Setup player colliders
-        // childCollider = player.transform.Find("PlayerCollider")
-        col = player.transform.GetComponent<Collider>();
-
-        Move();
+        playerCol = player.transform.GetComponent<Collider>();
     }
 
     private void Update()
     {
-        // if Player collider detects an exit collider, move and generate room
-        // need to isolate to col_exit only, maybe layer mask or check name?
+        /*
+            if Player collider detects an exit collider, move and generate room
+            need to isolate to col_exit only, maybe layer mask or check name?
+        */
 
-        // if (col.isTrigger) {
-        //     Move();
-        // }
+        // if triggered an exit and if only one (current) room is active
+        if(player.GetComponent<PlayerLocation>().isEnter == true && activeNum < activeMax) {
+            Move();
+            currentRoom = nextRoom;
+        }
+
+        if(player.GetComponent<PlayerLocation>().isExit == true && activeNum > 0) {
+            /*  but only want to deactivate current room if player moved onto next room..
+                otherwise if they walk into the transition area but backtrack to current room,
+                should unload the next room.
+                wha... possible ideas:
+                    - tracking whether player transform is within room bounds; marker trigger loads in a random room,
+                        but if they leave the bounds then that loads it out; could get complex since have to do in world space..
+                    - another collider.isTrigger.. would have to get prefab root of respective collider to load it out;
+                        would also need collider trigger that covers entire prefab- eh. not good.
+            */
+            activeRooms.RemoveAt(0);
+            activeNum--;
+        }
     }
 
     private void Move()
     {
         // Random number for next room
-        // nextRoom = Random.Range(1, 4); // int min inclusive, max exclusive
-        nextRoom = 1;
+        int nextRoomNum = Random.Range(1, 3);   // int min inclusive, max exclusive
+        nextRoom = rooms[nextRoomNum];
 
-        Transform currentOffset = rooms[currentRoom].GetComponent<RoomType>().exitMarker[0].transform;
-        Debug.Log("currentOffset: " + currentOffset.position);
+        // offset of current room exit
+        Transform currentOffset = currentRoom.GetComponent<RoomType>().exitMarker[0].transform;
+        // Debug.Log("currentOffset: " + currentOffset.position);
 
-        // negate next offset
-        Transform nextOffset = rooms[nextRoom].GetComponent<RoomType>().entranceMarker.transform;
-        Debug.Log("nextOffset: " + nextOffset.position);
+        // offset of next room entrance
+        Transform nextOffset = nextRoom.GetComponent<RoomType>().entranceMarker.transform;
+        // Debug.Log("nextOffset: " + nextOffset.position);
 
+        // currentOffset spawns prefab pivot at exit. nextOffset offsets prefab to entrance.
         moveAmount = currentOffset.position - nextOffset.position;
-        transform.position += moveAmount;   // moves RoomGenerator
+        transform.position += moveAmount;       // moves RoomGenerator
 
-        Instantiate(rooms[nextRoom], transform.position, Quaternion.identity);
-        Debug.Log("nextRoom INSTANTIATED!!!!");
+        /*
+            but this is if the prefab pivots are in the center
+            should this be adjusted so pivots are at entrance? I mean.. prob not that different..
+            plus this way might make it easier to randomize multiple entrances/exits for one room
+        */
 
-
-
-        /***************** OLD *****************/
-
-        // if (roomNumber == 1 || roomNumber == 2) { // move RIGHT
-        //     if (transform.position.x < maxX){
-        //         downCounter = 0;
-
-        //         Vector3 newPos = new Vector3(transform.position.x + moveAmount, transform.position.y, transform.position.z);
-        //         transform.position = newPos;
-
-        //         int rand = Random.Range(0, rooms.Length); // use any room type
-        //         Instantiate(rooms[rand], transform.position, Quaternion.identity);
-
-        //         roomNumber = Random.Range(1, 6);
-        //         if (roomNumber == 3) { // if going LEFT, ie. to prev room, go RIGHT instead
-        //             roomNumber = 2;
-        //         } else if (roomNumber == 4) { // if going LEFT, ie. to prev room, go DOWN instead
-        //             roomNumber = 5;
-        //         }
-        //     } else {
-        //         roomNumber = 5;
-        //     }
-
-        // } else if (roomNumber == 3 || roomNumber == 4) { // move LEFT
-        //     if (transform.position.x < maxX){
-        //         downCounter = 0;
-
-        //         Vector3 newPos = new Vector3(transform.position.x - moveAmount, transform.position.y, transform.position.z);
-        //         transform.position = newPos;
-
-        //         int rand = Random.Range(0, rooms.Length); // use any room type
-        //         Instantiate(rooms[rand], transform.position, Quaternion.identity);
-
-        //         roomNumber = Random.Range(3, 6); // won't move RIGHT
-
-        //     } else {
-        //         roomNumber = 5;
-        //     }
-
-        // } else if (roomNumber == 5) { // move DOWN
-
-        //     downCounter++;
-
-        //     if (transform.position.z > minZ) {
-
-        //         // cast sphere to detect current 0: this is before moving
-        //         Vector3 offset = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        //         Collider[] roomDetection = Physics.OverlapSphere(transform.position, 1, roomMask);
-
-        //         // Debug.Log(roomDetection.Length + " rooms detected");
-        //         // foreach(var col in roomDetection) {
-        //         //     Debug.Log(" TYPE: " + col.gameObject.name);
-        //         // }
-
-        //         // if no bottom opening, destroy and spawn a correct room
-        //         if (roomDetection[0].GetComponent<RoomType>().type != 1 && roomDetection[0].GetComponent<RoomType>().type != 3) {
-        //              if (downCounter >= 2) {
-        //                 roomDetection[0].GetComponent<RoomType>().RoomDestruction();
-        //                 Debug.Log(roomDetection[0].gameObject.name + " DESTROYED!!!!!!!!!");
-
-        //                 Instantiate(rooms[3], transform.position, Quaternion.identity);
-        //                 Debug.Log(rooms[3].gameObject.name + " INSTANTIATED!!!!!!!!");
-        //              } else {
-        //                 roomDetection[0].GetComponent<RoomType>().RoomDestruction();
-        //                 Debug.Log(roomDetection[0].gameObject.name + " DESTROYED!!!!");
-
-        //                 int randBottomRoom = Random.Range(1, 4);
-        //                 if (randBottomRoom == 2) randBottomRoom = 1;
-        //                 Instantiate(rooms[randBottomRoom], transform.position, Quaternion.identity);
-        //                 Debug.Log(rooms[randBottomRoom].gameObject.name + " INSTANTIATED!!!!");
-        //              }
-        //         }
-        //         Vector3 newPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - moveAmount);
-        //         transform.position = newPos;
-
-        //         // make sure next room has top opening
-        //         int rand = Random.Range(2, 4);
-        //         Instantiate(rooms[rand], transform.position, Quaternion.identity);
-        //         // make sure prev room has bottom opening
-
-        //         roomNumber = Random.Range(1, 6); // go anywhere
-        // }
+        Instantiate(nextRoom, transform.position, Quaternion.identity);
+        activeRooms.Add(nextRoom);
+        activeNum++;
+        // Debug.Log("nextRoom INSTANTIATED!!!!");
     }
 
     // DEBUG; for room detection sphere
