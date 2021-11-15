@@ -29,9 +29,16 @@ public class PlayerLocation : MonoBehaviour
     private void OnTriggerExit(Collider col) {
         if (col.gameObject.layer == layerIndex) {
             Debug.Log("exited collider!!");
-            isExit = true;
+            isExit = false;
             isEnter = false;
         }
     }
+
+    // private void OnTriggerStay(Collider col) {
+    //     if (col.gameObject.layer == layerIndex) {
+    //         isExit = false;
+    //         isEnter = false;
+    //     }
+    // }
 
 }
