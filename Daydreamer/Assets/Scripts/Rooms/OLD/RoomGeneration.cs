@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 // Modified LevelGeneration
 
@@ -12,6 +13,8 @@ public class RoomGeneration : MonoBehaviour
 
     public GameObject player;               // PLAYER
     private Collider playerCol;
+
+
 
     public Transform[] startingPositions;
     public GameObject[] rooms;              // make sure you're using the prefab rooms with setup, not just the plain fbxs
@@ -48,13 +51,15 @@ public class RoomGeneration : MonoBehaviour
             need to isolate to col_exit only, maybe layer mask or check name?
         */
 
+        // USED OLD PLAYERCOLLISION without events
         // if triggered an exit and if only one (current) room is active
-        if(player.GetComponent<PlayerLocation>().isEnter == true && activeNum < activeMax) {
-            Move();
-            player.GetComponent<PlayerLocation>().isEnter = false;
-            Debug.Log("Update() isEnter " + activeNum);
+        // if(player.GetComponent<PlayerCollision>().isEnter == true && activeNum < activeMax) {
+        //     Move();
+        //     player.GetComponent<PlayerCollision>().isEnter = false;
+        //     Debug.Log("Update() isEnter " + activeNum);
 
-        }
+        // }
+
 
         /* isTrigger will detect both the current exit marker and the entrance marker when it pops up.. double the signals?
         */
