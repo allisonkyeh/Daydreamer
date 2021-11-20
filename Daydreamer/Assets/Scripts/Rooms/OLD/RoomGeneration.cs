@@ -14,8 +14,6 @@ public class RoomGeneration : MonoBehaviour
     public GameObject player;               // PLAYER
     private Collider playerCol;
 
-
-
     public Transform[] startingPositions;
     public GameObject[] rooms;              // make sure you're using the prefab rooms with setup, not just the plain fbxs
 
@@ -77,7 +75,6 @@ public class RoomGeneration : MonoBehaviour
 
         // }
     }
-
 
     private void Move()
     {

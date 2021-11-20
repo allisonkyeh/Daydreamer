@@ -105,7 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1595205228790813768}
   m_Layer: 8
-  m_Name: geo
+  m_Name: visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,6 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomNumber: 4
   maxDoors: 0
+  dissolvingIn: 0
 --- !u!1001 &9065383187415869073
 PrefabInstance:
   m_ObjectHideFlags: 0
