@@ -5,16 +5,19 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     [SerializeField] public int roomNumber;
-    // max number of possible doors
-    [SerializeField] public int maxDoors;
     // List of 'doors', to other rooms
     public GameObject[] doors;
+    // max number of possible doors
+    public int maxDoors => doors.Length;
+
     /*
         this could be list of empty gameobjs, and just generate rooms at those points,
         replacing the gameobj in the list with the generated room
     */
 
     public bool isDissolvingIn = false;
+    public bool isDissolvingOut = false;
+
     public bool isVisible = false;
 
 
@@ -35,6 +38,12 @@ public class Room : MonoBehaviour
     // OnPlayerExit
     public void DissolveOut()
     {
+        isDissolvingOut = true;
+
         Destroy(gameObject);
+        
+        isVisible = false;
+        isDissolvingOut = false;
+
     }
 }

@@ -14,14 +14,13 @@ public class RoomManager : MonoBehaviour
     private GameObject  currentRoom;
     private GameObject  prevRoom;
     private GameObject  nextRoom;
+    private int currentRoomNumber => currentRoom.GetComponent<Room>().roomNumber;
 
     // List of all rooms; make sure using the prefabs w/setup not fbxs
     public List<GameObject> roomsAll;
     public int roomsTotalNumber => roomsAll.Count;
 
-    // Makes sure only detect rooms and not other colliders
-    public int roomMask => LayerMask.NameToLayer("Room");
-
+    /*** MAYBE don't need this stuff ***/
     // Number of active rooms
     private int activeNum = 0;
     // Max number of active rooms allowed
@@ -30,16 +29,12 @@ public class RoomManager : MonoBehaviour
     private List<GameObject> roomsActive;
     // roomsActive.First() should be current room
 
-    // List of room colliders detected from OverlapSphere
-    private Collider[] roomsDetected;
-
     private void Start()
     {
-        // Setup starting position (only one rn)
+        // Set up starting position (only one rn) and first starting room
         int randStartingPos = Random.Range(0, startingPositions.Length);
         transform.position  = startingPositions[randStartingPos].position;
 
-        // Setup first starting room
         currentRoom = roomsAll[0];
         Instantiate(currentRoom, transform.position, Quaternion.identity);
 
@@ -51,37 +46,44 @@ public class RoomManager : MonoBehaviour
 
     private void Update()
     {
-        // roomsDetected = Physics.OverlapSphere(player.transform.position, 1, roomMask);
 
-        // Debug.Log(roomDetection.Length + " rooms detected");
-        // foreach(var col in roomDetection) {
-        //     Debug.Log(" TYPE: " + col.gameObject.name);
-        // }
     }
 
     /*** Runs everytime the player enters a new room;
-                randomize and fill door list in room ***/
+                randomize and fill doors to other rooms ***/
     private void FillDoors()
     {
-        int randRoom = 0;
+        int randRoomNumber = 0;
         int randEntrance = 0;
-        Vector3 newOffset;
-        Transform currentOffset;
-        Transform nextOffset;
+        Vector3     newPos;
+        Quaternion  newRot;
+        Vector3     currentPos;
+        Quaternion  currentRot;
+        Vector3     nextPos;
+        Quaternion  nextRot;
 
         foreach (GameObject door in currentRoom.GetComponent<Room>().doors) {
-            randRoom = Random.Range(1, roomsTotalNumber);   // int min inclusive, max exclusive
-            currentOffset = door.transform;
+            currentPos = door.transform.position;
+            currentRot = door.transform.rotation;
 
-            nextRoom = roomsAll[randRoom];
+            // randomize new room to generate; Range int is: minInclusive, maxExclusive
+            do randRoomNumber = Random.Range(1, roomsTotalNumber);
+            while (randRoomNumber == currentRoomNumber);
+            nextRoom = roomsAll[randRoomNumber];
+
+            // picks random entrance/door of the new room
             randEntrance = Random.Range(1, nextRoom.GetComponent<Room>().maxDoors);
-            nextOffset = nextRoom.GetComponent<Room>().doors[randEntrance].transform;
+            nextPos = nextRoom.GetComponent<Room>().doors[randEntrance].transform.position;
+            nextRot = nextRoom.GetComponent<Room>().doors[randEntrance].transform.rotation;
 
-            newOffset = currentOffset.position - nextOffset.position;
-            // switch quaternion with transform.rotate
-            Instantiate(nextRoom, newOffset, Quaternion.identity);
-            roomsActive.Add(nextRoom);
-            activeNum++;
+            // new offset to line up the new room to the current door
+            newPos = currentPos - nextPos;
+            newRot = currentRot * Quaternion.Inverse(nextRot); // essentially subtracts
+
+            // generates new room
+            Instantiate(nextRoom, newPos, newRot);
+            // roomsActive.Add(nextRoom);
+            // activeNum++;
         }
         Debug.Log("FillDoors() finished, all room doors should be loaded but invisible ");
     }
@@ -104,16 +106,20 @@ public class RoomManager : MonoBehaviour
             if currentroom is not in collider array
                 currentroom.cleanup()
         */
-    }
 
-    /*** Cleans up a room the player is leaving ***/
-    public void Cleanup()
-    {
         /*
-            - currentRoom.GetComponent<Room>().Cleanup(); (destroys room)
             - set new room as current room
             - randomize and generate new rooms
         */
+    }
+
+    /*** Cleans up a room the player is leaving ***/
+    public void Cleanup(Room r)
+    {
+        if (r.isVisible == true && r.isDissolvingIn == false) {
+            r.DissolveOut();
+        }
+        // need case for if r is currently dissolving in, switching to dissolving out
     }
 
     // DEBUG; for room detection sphere

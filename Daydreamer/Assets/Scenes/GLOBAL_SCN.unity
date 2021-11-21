@@ -374,7 +374,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomManager: {fileID: 850327572}
-  playerInside: 0
 --- !u!1 &850327572
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +410,9 @@ MonoBehaviour:
   - {fileID: 1155535242607468439, guid: 6a6cae30110e243b698c1ba4c0a052a7, type: 3}
   - {fileID: 7381431645850963392, guid: d060b65d5c48b4f59991b5d4fcb3794c, type: 3}
   - {fileID: 1976250143370124529, guid: 52846e18452784401949f9c015f8e816, type: 3}
+  - {fileID: 8280480837867351891, guid: 1c38f73e337d84c29a32c1a5b3f7925d, type: 3}
+  - {fileID: 9065383186188381641, guid: f7b2d3e4f84c8471698130cee3fcfcbc, type: 3}
+  - {fileID: 7128906828946068138, guid: 932373fb211f949f19ce7c040caded1a, type: 3}
 --- !u!4 &850327574
 Transform:
   m_ObjectHideFlags: 0
