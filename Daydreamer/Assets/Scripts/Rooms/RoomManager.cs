@@ -9,8 +9,7 @@ public class RoomManager : MonoBehaviour
     // Possible player starting positions
     public Transform[]  startingPositions;
 
-    /*** ROOM DATA ***/
-    // Amount to move generator gameobj
+    /*** ROOM TRACKING ***/
     private GameObject  currentRoom;
     private GameObject  prevRoom;
     private GameObject  nextRoom;
@@ -66,8 +65,13 @@ public class RoomManager : MonoBehaviour
             while (randRoomNumber == currentRoomNumber);
             nextRoom = roomsAll[randRoomNumber];
 
-            // Picks random entrance/door of the new room
+            // Picks random entrance/door of the new room; once per new room
             randEntrance = Random.Range(0, nextRoom.GetComponent<Room>().maxDoors);
+            // TODO: can't fill door that you are entering the room from,
+            // since the prev room is still there. Maybe only fill that room
+            // during Cleanup? Also, store the 'lineup' door in the room, so it can be
+            // skipped when doing fillDoors on that room (if player enters)
+
             nextPos = nextRoom.GetComponent<Room>().doors[randEntrance].transform.position;
             nextRot = nextRoom.GetComponent<Room>().doors[randEntrance].transform.rotation;
 
@@ -76,7 +80,9 @@ public class RoomManager : MonoBehaviour
             newRot = currentRot * Quaternion.Inverse(nextRot); // essentially subtracts
 
             // Generates new room
-            Instantiate(nextRoom, newPos, newRot);
+            GameObject n = Instantiate(nextRoom, newPos, newRot);
+            currentRoom.GetComponent<Room>().doorsRooms.Add(n);
+
             // roomsActive.Add(nextRoom);
             // activeNum++;
 
@@ -88,21 +94,41 @@ public class RoomManager : MonoBehaviour
     /*** Sets up a room the player is going into ***/
     public void Setup(Room r)
     {
-        if (r.isVisible == false && r.isDissolvingIn == false) {
+        if (r.isDissolvedIn == false && r.isDissolvingIn == false) {
             r.DissolveIn();
+            nextRoom = r.gameObject;
+
+            // nextRoom.DissolveIn()
+            // currentRoom.DissolveOut();
 
         }
-        // TODO: if finished dissolving in (this means player stayed in for full dissolve duration since exiting should switch to dissolveOut)
-        // switch currentRoom and filldoors()
+        // TODO: if finished dissolving in (this means player stayed in for full dissolve
+        // duration since exiting should switch to dissolveOut)
+        // TODO: switch currentRoom (do this in cleanup?) and filldoors()
+        // oh, filldoors in setup even if they dont go in (currently in Cleanup)
     }
 
     /*** Cleans up a room the player is leaving ***/
     public void Cleanup(Room r)
     {
-        if (r.isVisible == true && r.isDissolvingIn == false) {
+        if (r.isDissolvedIn == true && r.isDissolvingIn == false) {
             r.DissolveOut();
+            
+            List<GameObject> neighbors = r.GetComponent<Room>().doorsRooms;
+            foreach (GameObject n in neighbors){
+                n.GetComponent<Room>().DissolveOut();
+            }
+            neighbors.Clear();
+
+            prevRoom = currentRoom;
+            currentRoom = nextRoom;
+            FillDoors();
+
+            // TODO: WAIT. should dissolveOut happen when the new room is being
+            // dissolvedIn? and then cleanup is just getting rid of them
         }
         // TODO: case for if r is currently dissolving in, switching to dissolving out
+        // StopCoroutine
         // TODO: get rid of extra loaded rooms in r
     }
 

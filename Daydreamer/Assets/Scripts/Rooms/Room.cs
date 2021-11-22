@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    /*** ROOM DATA ***/
     [SerializeField] public int roomNumber;
-    // List of 'doors', to other rooms
+    // List of 'doors', to other rooms; for getting position/rotation to line up
     public GameObject[] doors;
-    // max number of possible doors
+    // List of neighboring rooms; for cleanup
+    public List<GameObject> doorsRooms;
+    // Max number of possible doors
     public int maxDoors => doors.Length;
+    // The door the player is entering from; constantly changes
+    public GameObject entrance;
 
-    /*  this could be list of empty gameobjs, and just generate rooms at those points,
-     *  replacing the gameobj in the list with the generated room
-     */
-
-    public bool isDissolvingIn = false;
+    /*** DISSOLVE ***/
+    public bool isDissolvingIn  = false;
     public bool isDissolvingOut = false;
+    public bool isDissolvedIn   = false;
+    // How long dissolve takes; maybe separate out for in out?
+    private float dissolveDuration;
 
-    public bool isVisible = false;
-
-
-    // OnPlayerEnter
+    // Player OnTriggerEnter -> Setup
     public void DissolveIn()
     {
         // check states
@@ -30,19 +32,18 @@ public class Room : MonoBehaviour
         visuals.SetActive(true);
         // coroutine to dissolve over time
 
-        isVisible = true;
+        isDissolvedIn = true;
         isDissolvingIn = false;
     }
 
-    // OnPlayerExit
+    // Player OnTriggerExit -> Cleanup
     public void DissolveOut()
     {
         isDissolvingOut = true;
 
         Destroy(gameObject);
 
-        isVisible = false;
+        isDissolvedIn = false;
         isDissolvingOut = false;
-
     }
 }
