@@ -10,10 +10,9 @@ public class Room : MonoBehaviour
     // max number of possible doors
     public int maxDoors => doors.Length;
 
-    /*
-        this could be list of empty gameobjs, and just generate rooms at those points,
-        replacing the gameobj in the list with the generated room
-    */
+    /*  this could be list of empty gameobjs, and just generate rooms at those points,
+     *  replacing the gameobj in the list with the generated room
+     */
 
     public bool isDissolvingIn = false;
     public bool isDissolvingOut = false;
@@ -41,7 +40,7 @@ public class Room : MonoBehaviour
         isDissolvingOut = true;
 
         Destroy(gameObject);
-        
+
         isVisible = false;
         isDissolvingOut = false;
 

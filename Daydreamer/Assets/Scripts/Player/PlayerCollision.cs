@@ -6,9 +6,11 @@ using UnityEngine.Events;
 public class PlayerCollision : MonoBehaviour
 {
     public GameObject   roomManager;
+    private GameObject  rmRoot;
+    private Room        rm;
     private Collider    playerCol;
-    private int layerIndex  => LayerMask.NameToLayer("Room");
-    private bool isPrmStart;
+    private int         layerIndex  => LayerMask.NameToLayer("Room");
+    private bool        isRmStart;
 
     private void Awake() {
         playerCol = this.gameObject.transform.GetChild(0).GetComponent<Collider>();
@@ -16,23 +18,19 @@ public class PlayerCollision : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (this.gameObject.transform.root.name == "prm_start") {
-            isPrmStart = true;
-        } else {
-            isPrmStart = false;
-        }
-        if (other.gameObject.layer == layerIndex && !isPrmStart) {
-            Debug.Log("entered collider!!");
-            Room r = other.gameObject.transform.root.gameObject.GetComponent<Room>();
-            roomManager.GetComponent<RoomManager>().Setup(r);
+        rmRoot = other.gameObject.transform.root.gameObject;
+        isRmStart = (rmRoot.name == "prm_start");
+        if (other.gameObject.layer == layerIndex && !isRmStart) {
+            rm = rmRoot.GetComponent<Room>();
+            roomManager.GetComponent<RoomManager>().Setup(rm);
         }
     }
 
     private void OnTriggerExit(Collider other) {
+        rmRoot = other.gameObject.transform.root.gameObject;
         if (other.gameObject.layer == layerIndex) {
-            Debug.Log("exited collider!!");
-            Room r = other.gameObject.transform.root.gameObject.GetComponent<Room>();
-            roomManager.GetComponent<RoomManager>().Cleanup(r);
+            rm = rmRoot.GetComponent<Room>();
+            roomManager.GetComponent<RoomManager>().Cleanup(rm);
         }
     }
 }
