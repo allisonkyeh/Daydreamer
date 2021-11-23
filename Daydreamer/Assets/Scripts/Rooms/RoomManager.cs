@@ -46,49 +46,62 @@ public class RoomManager : MonoBehaviour
                 randomize and fill doors to other rooms ***/
     private void FillDoors()
     {
-        int randRoomNumber = 0;
-        int randEntrance = 0;
+        int randRoomNum = 0;
+        int randEntranceNum = 0;
+        GameObject randEntrance;
         Vector3     newPos;
-        Quaternion  newRot;
         Vector3     currentPos;
-        Quaternion  currentRot;
         Vector3     nextPos;
-        Quaternion  nextRot;
 
         foreach (GameObject door in currentRoom.GetComponent<Room>().doors) {
             currentPos = door.transform.position;
-            currentRot = door.transform.rotation;
 
             // Randomize new room to generate; Range int is: minInclusive, maxExclusive
             // Range starts from 1 to exclude rm_start
-            do randRoomNumber = Random.Range(1, roomsTotalNumber);
-            while (randRoomNumber == currentRoomNumber);
-            nextRoom = roomsAll[randRoomNumber];
+            do randRoomNum = Random.Range(1, roomsTotalNumber);
+            while (randRoomNum == currentRoomNumber);
+            nextRoom = roomsAll[randRoomNum];
 
             // Picks random entrance/door of the new room; once per new room
-            randEntrance = Random.Range(0, nextRoom.GetComponent<Room>().maxDoors);
+            randEntranceNum = Random.Range(0, nextRoom.GetComponent<Room>().maxDoors);
+            randEntrance = nextRoom.GetComponent<Room>().doors[randEntranceNum];
             // TODO: can't fill door that you are entering the room from,
             // since the prev room is still there. Maybe only fill that room
             // during Cleanup? Also, store the 'lineup' door in the room, so it can be
             // skipped when doing fillDoors on that room (if player enters)
 
-            nextPos = nextRoom.GetComponent<Room>().doors[randEntrance].transform.position;
-            nextRot = nextRoom.GetComponent<Room>().doors[randEntrance].transform.rotation;
-
-            // New offset to line up the new room to the current door
+            // New position offset to line up the new room to the current door
+            nextPos = randEntrance.transform.position;
             newPos = currentPos - nextPos;
-            newRot = currentRot * Quaternion.Inverse(nextRot); // essentially subtracts
 
             // Generates new room
-            GameObject n = Instantiate(nextRoom, newPos, newRot);
+            GameObject n = (GameObject) Instantiate(nextRoom, newPos, Quaternion.identity);
+
+            // FIXME:
+            Debug.Log("adding to doorsRooms: " + n.name);
             currentRoom.GetComponent<Room>().doorsRooms.Add(n);
 
+            // WHEN SETTING UP DOORS
+            // pull left, from bottom of rotation gizmo (from top view, z up)
+            // aka clockwise so every rot is positive
+
+            // Instance n entrance transform; rotation
+            Transform nET = n.GetComponent<Room>().doors[randEntranceNum].transform;
+            Transform dET = door.transform;
+
+            float d = dET.eulerAngles.y;
+            d = (d > 180) ? d = d - 180 : d;
+            float e = nET.eulerAngles.y;
+            e = (e > 180) ? e = e - 180 : e;
+            // Debug.Log("rotateAround angle: " + (d + e));
+
+            n.transform.RotateAround(nET.position, Vector3.up, (d + e));
+
             // roomsActive.Add(nextRoom);
-            // activeNum++;
 
             // TODO: case to prevent generating duplicate rooms
         }
-        Debug.Log("FillDoors() finished, all room doors should be loaded and invisible ");
+        // Debug.Log("FillDoors() finished, all room doors should be loaded and invisible ");
     }
 
     /*** Sets up a room the player is going into ***/
@@ -113,15 +126,24 @@ public class RoomManager : MonoBehaviour
     {
         if (r.isDissolvedIn == true && r.isDissolvingIn == false) {
             r.DissolveOut();
-            
+
             List<GameObject> neighbors = r.GetComponent<Room>().doorsRooms;
+            // Debug.Log("Neighbors: " + neighbors.Count);
             foreach (GameObject n in neighbors){
-                n.GetComponent<Room>().DissolveOut();
+                Destroy(n);
+                // Debug.Log(n.name + " destroyed.");
+
+                // FIXME: MissingReferenceException? bc destroyed here, but ontriggerexit being hit
             }
             neighbors.Clear();
+            // Debug.Log("Neighbors Cleared: " + neighbors.Count);
+
 
             prevRoom = currentRoom;
             currentRoom = nextRoom;
+
+            Debug.Log("current room: " + currentRoom.name);
+
             FillDoors();
 
             // TODO: WAIT. should dissolveOut happen when the new room is being
