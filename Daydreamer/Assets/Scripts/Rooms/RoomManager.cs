@@ -86,22 +86,20 @@ public class RoomManager : MonoBehaviour
             // aka clockwise so every rot is positive
 
             // Instance n entrance transform; rotation
-            Transform nET = n.GetComponent<Room>().doors[randEntranceNum].transform;
-            Transform dET = door.transform;
+            Transform nextEntrance = n.GetComponent<Room>().doors[randEntranceNum].transform;
+            Transform currentExit = door.transform;
 
-            float d = dET.eulerAngles.y;
-            d = (d > 180) ? d = d - 180 : d;
-            float e = nET.eulerAngles.y;
-            e = (e > 180) ? e = e - 180 : e;
-            // Debug.Log("rotateAround angle: " + (d + e));
+            float nextAngle = nextEntrance.eulerAngles.y;
+            float currentAngle = currentExit.eulerAngles.y;
 
-            n.transform.RotateAround(nET.position, Vector3.up, (d + e));
+            // rotating around nextEntrance
+            n.transform.RotateAround(nextEntrance.position, Vector3.up, (currentAngle - nextAngle + 180));
 
             // roomsActive.Add(nextRoom);
 
             // TODO: case to prevent generating duplicate rooms
         }
-        // Debug.Log("FillDoors() finished, all room doors should be loaded and invisible ");
+        // Debug.Log("FillDoors() finished, all room doors should be loaded and invisible");
     }
 
     /*** Sets up a room the player is going into ***/
@@ -125,24 +123,25 @@ public class RoomManager : MonoBehaviour
     public void Cleanup(Room r)
     {
         if (r.isDissolvedIn == true && r.isDissolvingIn == false) {
-            r.DissolveOut();
 
             List<GameObject> neighbors = r.GetComponent<Room>().doorsRooms;
             // Debug.Log("Neighbors: " + neighbors.Count);
             foreach (GameObject n in neighbors){
                 Destroy(n);
-                // Debug.Log(n.name + " destroyed.");
+                Debug.Log(n.name + " destroyed.");
 
                 // FIXME: MissingReferenceException? bc destroyed here, but ontriggerexit being hit
             }
             neighbors.Clear();
             // Debug.Log("Neighbors Cleared: " + neighbors.Count);
 
+            r.DissolveOut();
+
 
             prevRoom = currentRoom;
             currentRoom = nextRoom;
 
-            Debug.Log("current room: " + currentRoom.name);
+            // Debug.Log("current room: " + currentRoom.name);
 
             FillDoors();
 
