@@ -22,6 +22,11 @@ public class Room : MonoBehaviour
     // How long dissolve takes; maybe separate out for in out?
     private float dissolveDuration;
 
+    private void Start()
+    {
+        doorsRooms = new List<GameObject>();
+    }
+
     // Player OnTriggerEnter -> Setup
     public void DissolveIn()
     {

@@ -34,6 +34,7 @@ public class RoomManager : MonoBehaviour
 
         FillDoors();
 
+        roomsAll = new List<GameObject>();
         roomsActive = new List<GameObject>(); roomsActive.Add(currentRoom);
     }
 

@@ -19,7 +19,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         rmRoot = other.gameObject.transform.root.gameObject;
-        isRmStart = (rmRoot.name == "prm_start");
+        isRmStart = (rmRoot.name == "prm_start(Clone)");
         if (other.gameObject.layer == layerIndex && !isRmStart) {
             rm = rmRoot.GetComponent<Room>();
             roomManager.GetComponent<RoomManager>().Setup(rm);
