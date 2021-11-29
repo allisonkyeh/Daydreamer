@@ -22,7 +22,7 @@ public class Room : MonoBehaviour
     // How long dissolve takes; maybe separate out for in out?
     private float dissolveDuration;
 
-    private void Start()
+    private void Awake()
     {
         doorsRooms = new List<GameObject>();
     }

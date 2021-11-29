@@ -29,13 +29,14 @@ public class RoomManager : MonoBehaviour
         int randStartingPos = Random.Range(0, startingPositions.Length);
         transform.position  = startingPositions[randStartingPos].position;
 
-        currentRoom = roomsAll[0];
-        Instantiate(currentRoom, transform.position, Quaternion.identity);
+        GameObject startRm = (GameObject) Instantiate(roomsAll[0], transform.position, Quaternion.identity);
+        currentRoom = startRm;
 
         FillDoors();
 
         roomsAll = new List<GameObject>();
-        roomsActive = new List<GameObject>(); roomsActive.Add(currentRoom);
+        roomsActive = new List<GameObject>();
+        roomsActive.Add(startRm);
     }
 
     private void Update()
