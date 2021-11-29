@@ -34,7 +34,6 @@ public class RoomManager : MonoBehaviour
 
         FillDoors();
 
-        roomsAll = new List<GameObject>();
         roomsActive = new List<GameObject>();
         roomsActive.Add(startRm);
     }
@@ -55,6 +54,7 @@ public class RoomManager : MonoBehaviour
         Vector3     currentPos;
         Vector3     nextPos;
 
+        Debug.Log("filling doors for " + currentRoom.name);
         foreach (GameObject door in currentRoom.GetComponent<Room>().doors) {
             currentPos = door.transform.position;
 
@@ -63,7 +63,7 @@ public class RoomManager : MonoBehaviour
             do randRoomNum = Random.Range(1, roomsTotalNumber);
             while (randRoomNum == currentRoomNumber);
             nextRoom = roomsAll[randRoomNum];
-
+        
             // Picks random entrance/door of the new room; once per new room
             randEntranceNum = Random.Range(0, nextRoom.GetComponent<Room>().maxDoors);
             randEntrance = nextRoom.GetComponent<Room>().doors[randEntranceNum];
@@ -129,6 +129,10 @@ public class RoomManager : MonoBehaviour
             List<GameObject> neighbors = r.GetComponent<Room>().doorsRooms;
             // Debug.Log("Neighbors: " + neighbors.Count);
             foreach (GameObject n in neighbors){
+                if (n == nextRoom) {
+                    Debug.Log("skipping " + n.name);
+                    continue;
+                }
                 Destroy(n);
                 Debug.Log(n.name + " destroyed.");
 

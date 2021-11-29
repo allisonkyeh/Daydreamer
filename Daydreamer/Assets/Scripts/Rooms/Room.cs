@@ -25,6 +25,10 @@ public class Room : MonoBehaviour
     private void Awake()
     {
         doorsRooms = new List<GameObject>();
+
+        if (this.gameObject.name == "prm_start(Clone)") {
+            isDissolvedIn = true;
+        }
     }
 
     // Player OnTriggerEnter -> Setup
