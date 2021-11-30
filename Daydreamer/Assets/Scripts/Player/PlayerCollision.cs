@@ -27,6 +27,8 @@ public class PlayerCollision : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other) {
+        Debug.Log("OnTriggerExit");
+
         rmRoot = other.gameObject.transform.root.gameObject;
         if (other.gameObject.layer == layerIndex) {
             rm = rmRoot.GetComponent<Room>();
