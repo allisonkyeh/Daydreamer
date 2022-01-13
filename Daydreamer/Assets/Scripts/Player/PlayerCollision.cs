@@ -9,7 +9,7 @@ public class PlayerCollision : MonoBehaviour
     private GameObject  rmRoot;
     private Room        rm;
     private Collider    playerCol;
-    private int         layerIndex  => LayerMask.NameToLayer("Room");
+    private int         layerIndex => LayerMask.NameToLayer("Room");
     private bool        isRmStart;
 
     private void Awake() {
