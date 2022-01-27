@@ -32,4 +32,8 @@ public class CameraTriggerVolume : MonoBehaviour
             if (CameraSwitcher.ActiveCamera != cam) CameraSwitcher.SwitchCamera(cam);
         }
     }
+
+    private void OnTriggerExit(Collider other) {
+        cam.Priority = 0;
+    }
 }
