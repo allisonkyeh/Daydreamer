@@ -17,10 +17,12 @@ public static class CameraSwitcher
     public static void SwitchCamera(CinemachineVirtualCamera camera)
     {
         camera.Priority = 10;
-        ActiveCamera = camera;
+        ActiveCamera    = camera;
 
         foreach (CinemachineVirtualCamera c in cameras)
         {
+            Debug.Log("cameras: " + c.name);
+
             if (c != camera && c.Priority != 0)
             {
                 c.Priority = 0;

@@ -10,7 +10,7 @@ public class CameraTriggerVolume : MonoBehaviour
     [SerializeField] private Vector3 boxSize;
 
     BoxCollider box;
-    Rigidbody rb;
+    Rigidbody   rb;
 
     private void Awake() {
         box = GetComponent<BoxCollider>();
@@ -31,5 +31,9 @@ public class CameraTriggerVolume : MonoBehaviour
         {
             if (CameraSwitcher.ActiveCamera != cam) CameraSwitcher.SwitchCamera(cam);
         }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        cam.Priority = 0;
     }
 }
