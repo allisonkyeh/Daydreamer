@@ -18,7 +18,6 @@ public class RoomGeneration : MonoBehaviour
     public GameObject[] rooms;              // make sure you're using the prefab rooms with setup, not just the plain fbxs
 
     private int activeNum;                  // number of active rooms
-    private int activeMax = 4;              // max number of active rooms allowed
     private List<GameObject> activeRooms;   // list of rooms visited that are currently active??
                                             // activeRooms.First() should be current room
 
