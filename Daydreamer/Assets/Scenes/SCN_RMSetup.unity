@@ -249,7 +249,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 1
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -5212,7 +5212,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 1
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -5276,7 +5276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1178108940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5290,7 +5290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1027017983}
-  boxSize: {x: 3.87, y: 3.71, z: 4.31}
+  boxSize: {x: 2.81, y: 2.01, z: 2.72}
 --- !u!54 &1178108941
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5328,7 +5328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1178108939}
   m_LocalRotation: {x: -0, y: 0.0661596, z: -0, w: 0.99780905}
-  m_LocalPosition: {x: -1.78, y: 1.0380574, z: 2.45}
+  m_LocalPosition: {x: -2.22, y: 1.0380574, z: 3.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1027017984}
