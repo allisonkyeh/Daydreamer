@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: env_mat
+  m_Name: rockDisplace_mat
   m_Shader: {fileID: -6465566751694194690, guid: 53342d8bcd6ec430a9d5b20c7ab85b75, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -65,15 +65,15 @@ Material:
     - Vector1_65aecc276af74ee099e651767380a5e7: -1
     - Vector1_8db20cea9b8646bfb0b7281d9b2195ed: 5
     - Vector1_9119a77f898e4831a3769ebd713ed317: 10
-    - Vector1_a733b1ccabb44d358fb023bf798c478b: 2
+    - Vector1_a733b1ccabb44d358fb023bf798c478b: 5
     - Vector1_d090a899e73a46e7bc8cec20a0fb5f08: 0
     - Vector1_d0b2a0cc48de413d8908c7b16417c5cb: 1
-    - Vector1_eb160254423e493f871b4e03a9235517: 1
-    - _HandMask: -0.5
-    - _WholeMask: -0.12
+    - Vector1_eb160254423e493f871b4e03a9235517: -0.25
+    - _HandMask: 1
+    - _WholeMask: -0.06
     m_Colors:
-    - Color_4f2da59e4b9b49f392723a50ac7ac204: {r: 0.5943396, g: 0.5152828, b: 0.40650585, a: 0}
-    - Color_4f5bbd86720e4b5c85b725167a548d82: {r: 0.6580189, g: 0.8416926, b: 0.8773585, a: 0}
+    - Color_4f2da59e4b9b49f392723a50ac7ac204: {r: 0.4811321, g: 0.41299406, b: 0.3563101, a: 0}
+    - Color_4f5bbd86720e4b5c85b725167a548d82: {r: 1, g: 1, b: 1, a: 0}
     - Color_796fe05f9a4946b19ad3ef1d62d86ca7: {r: 1, g: 0, b: 0, a: 0}
     - Vector2_8d111400d2794971b7521e1a2dc74b78: {r: 1, g: 5, b: 0, a: 0}
     - Vector2_a2829562d6ed4fb19c79888e866156ac: {r: 1, g: 0, b: 0, a: 0}
