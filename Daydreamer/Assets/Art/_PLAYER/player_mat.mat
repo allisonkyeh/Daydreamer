@@ -63,7 +63,7 @@ Material:
     - Vector1_11a3f773e6514ee99e15711d5a97bf33: -2
     - Vector1_4cd03d7b2efb4915bacc546c5fbccab2: 3
     - Vector1_65aecc276af74ee099e651767380a5e7: -1
-    - Vector1_8db20cea9b8646bfb0b7281d9b2195ed: 5
+    - Vector1_8db20cea9b8646bfb0b7281d9b2195ed: 7
     - Vector1_9119a77f898e4831a3769ebd713ed317: 10
     - Vector1_a733b1ccabb44d358fb023bf798c478b: 5
     - Vector1_d090a899e73a46e7bc8cec20a0fb5f08: 0
@@ -72,8 +72,8 @@ Material:
     - _HandMask: -0.8
     - _WholeMask: -1
     m_Colors:
-    - Color_4f2da59e4b9b49f392723a50ac7ac204: {r: 1, g: 1, b: 1, a: 0}
-    - Color_4f5bbd86720e4b5c85b725167a548d82: {r: 1, g: 0.51841265, b: 0, a: 0}
+    - Color_4f2da59e4b9b49f392723a50ac7ac204: {r: 0.78431374, g: 0.6598422, b: 0.5882353, a: 0}
+    - Color_4f5bbd86720e4b5c85b725167a548d82: {r: 1, g: 0.78694654, b: 0.4292453, a: 0}
     - Color_796fe05f9a4946b19ad3ef1d62d86ca7: {r: 1, g: 0, b: 0, a: 0}
     - Vector2_8d111400d2794971b7521e1a2dc74b78: {r: 1, g: 1, b: 0, a: 0}
     - Vector2_a2829562d6ed4fb19c79888e866156ac: {r: 1, g: 0, b: 0, a: 0}
