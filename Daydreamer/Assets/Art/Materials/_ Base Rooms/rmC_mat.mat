@@ -32,8 +32,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_f905a9491dd9483e9c9cbc994aa7bc4b: 0.8
     - _ColorRange: 0
     - _FogDensity: 0.104
     m_Colors:
-    - _FogColor: {r: 0.5872642, g: 0.7830189, b: 0.7674828, a: 1}
+    - _FogColor: {r: 0.3290762, g: 0.4673448, b: 0.4811321, a: 1}
   m_BuildTextureStacks: []
