@@ -64,8 +64,11 @@ Material:
     - Vector1_4cd03d7b2efb4915bacc546c5fbccab2: 3
     - Vector1_65aecc276af74ee099e651767380a5e7: -1
     - Vector1_8db20cea9b8646bfb0b7281d9b2195ed: 5
+    - Vector1_9119a77f898e4831a3769ebd713ed317: 10
+    - Vector1_a733b1ccabb44d358fb023bf798c478b: 1
     - Vector1_d090a899e73a46e7bc8cec20a0fb5f08: 0
     - Vector1_d0b2a0cc48de413d8908c7b16417c5cb: 1
+    - Vector1_eb160254423e493f871b4e03a9235517: 0
     - _HandMask: -0.8
     - _WholeMask: 1
     m_Colors:
