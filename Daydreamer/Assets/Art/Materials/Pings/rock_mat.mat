@@ -59,6 +59,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - Vector1_11a3f773e6514ee99e15711d5a97bf33: -2
     - Vector1_4cd03d7b2efb4915bacc546c5fbccab2: 1
@@ -70,6 +71,8 @@ Material:
     - Vector1_d0b2a0cc48de413d8908c7b16417c5cb: 1
     - Vector1_eb160254423e493f871b4e03a9235517: 0.7
     - _HandMask: -0.5
+    - _QueueControl: 0
+    - _QueueOffset: 0
     - _WholeMask: -0.12
     m_Colors:
     - Color_4f2da59e4b9b49f392723a50ac7ac204: {r: 0.5943396, g: 0.5152828, b: 0.40650585, a: 0}
@@ -81,3 +84,16 @@ Material:
     - Vector2_caff66e718344f75bbd0b450c4a5b95e: {r: 0, g: 0, b: 0, a: 0}
     - _Offset: {r: 0, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []
+--- !u!114 &6565778224243048558
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5

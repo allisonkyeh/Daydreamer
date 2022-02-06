@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6991485588202647122
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -59,6 +72,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - Vector1_11a3f773e6514ee99e15711d5a97bf33: -2
     - Vector1_4cd03d7b2efb4915bacc546c5fbccab2: 1
@@ -70,6 +84,8 @@ Material:
     - Vector1_d0b2a0cc48de413d8908c7b16417c5cb: 1
     - Vector1_eb160254423e493f871b4e03a9235517: -0.25
     - _HandMask: 1
+    - _QueueControl: 0
+    - _QueueOffset: 0
     - _WholeMask: -0.06
     m_Colors:
     - Color_4f2da59e4b9b49f392723a50ac7ac204: {r: 0.745283, g: 0.59715325, b: 0.38318795, a: 0}
