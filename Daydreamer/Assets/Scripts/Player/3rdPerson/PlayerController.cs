@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private InputActionReference jumpControl;
 
+    private Animator anim;
+
     [SerializeField]
     private float playerSpeed   = 2.0f;
     [SerializeField]
@@ -22,6 +24,11 @@ public class PlayerController : MonoBehaviour
     private Vector3             playerVelocity;
     private bool                groundedPlayer;
     private Transform           cameraMainTransform;
+
+    void Awake()
+    {
+        anim = this.gameObject.transform.GetChild(0).GetComponent<Animator>();
+    }
 
     private void OnEnable() {
         movementControl.action.Enable();
@@ -50,6 +57,9 @@ public class PlayerController : MonoBehaviour
         Vector2 movement = movementControl.action.ReadValue<Vector2>();
         Vector3 move = new Vector3(movement.x, 0, movement.y);
 
+        // mecanim
+        anim.SetFloat ("Speed", move.magnitude);
+
         // to factor in camera direction
         move    = cameraMainTransform.forward * move.z + cameraMainTransform.right * move.x;
         move.y  = 0f;
@@ -72,5 +82,8 @@ public class PlayerController : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(0f, targetAngle, 0f);
             transform.rotation  = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
         }
+
+
+
     }
 }
