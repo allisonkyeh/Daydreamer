@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: worry about this class later lol
 public class VignetteManager : MonoBehaviour
 {
     /*** PLAYER ***/

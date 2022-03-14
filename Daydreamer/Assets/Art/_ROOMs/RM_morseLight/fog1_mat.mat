@@ -49,6 +49,8 @@ Material:
     - Vector1_f905a9491dd9483e9c9cbc994aa7bc4b: 0.8
     - _ColorRange: 0
     - _FogDensity: 0.093
+    - _QueueControl: 0
+    - _QueueOffset: 0
     m_Colors:
     - _FogColor: {r: 0.7905838, g: 0.87878025, b: 0.8867924, a: 1}
   m_BuildTextureStacks: []
