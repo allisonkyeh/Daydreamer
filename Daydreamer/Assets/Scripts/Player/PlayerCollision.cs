@@ -38,7 +38,7 @@ public class PlayerCollision : MonoBehaviour
         // Debug.Log("OnTriggerExit");
 
         vignetteRoot = other.gameObject.transform.root.gameObject;
-        if (other.gameObject.layer == layerIndex) {
+        if (other.gameObject.layer == roomLayer) {
             rm = vignetteRoot.GetComponent<Room>();
             roomManager.GetComponent<RoomManager>().Cleanup(rm);
         }

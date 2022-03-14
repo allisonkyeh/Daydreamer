@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class shellMat : MonoBehaviour
+public class PlayerShell : MonoBehaviour
 {
     /***** CORRUPTION *****/
     [SerializeField]
     [Range(-1, 1)]
     public float    corruptionValue;
     public float    corruptionRate;
-    public boolean  corrupting = true;
+    public bool  corrupting = true;
 
     /***** PLAYER *****/
     [SerializeField]
     Material    shellMat;
     Collider    playerCol;
-    var         playerCollision;
+    // var         playerCollision;
 
     /***** VIGNETTES *****/
     List<Material>      roomMats;
@@ -31,7 +31,7 @@ public class shellMat : MonoBehaviour
     private void Awake() {
         playerCol = this.gameObject.transform.GetChild(0).GetComponent<Collider>();
         playerCol.isTrigger = true;
-        playerCollision = GetComponent(PlayerCollision);
+        // playerCollision = GetComponent(PlayerCollision);
     }
 
     private void Update() {

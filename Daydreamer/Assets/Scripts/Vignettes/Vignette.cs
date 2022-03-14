@@ -7,7 +7,7 @@ public class Vignette : MonoBehaviour
     /*** VIGNETTE DATA ***/
     [SerializeField][Range(0, 3)]
     public int      temperature;
-    public boolean  inhabited;
+    public bool  inhabited;
     public int      visits = 0;
     public Collider vignetteCol;
 
