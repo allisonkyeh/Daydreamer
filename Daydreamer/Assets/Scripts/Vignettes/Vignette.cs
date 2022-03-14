@@ -5,8 +5,8 @@ using UnityEngine;
 public class Vignette : MonoBehaviour
 {
     /*** VIGNETTE DATA ***/
-    [SerializeField][Range(0, 3)]
-    public int      temperature;
+    // [SerializeField][Range(0, 3)]
+    // public int      temperature;
     public bool  inhabited;
     public int      visits = 0;
     public Collider vignetteCol;
@@ -20,6 +20,13 @@ public class Vignette : MonoBehaviour
     float           timeElapsed;
     public float    lerpDuration;
     private int     layerIndex => LayerMask.NameToLayer("Room");
+
+    public enum Temperature {
+        Warm,
+        Neutral,
+        Cold
+    }
+    public Temperature temp;
 
     private void Awake() {
         vignetteCol = this.gameObject.transform.GetChild(0).GetComponent<Collider>();

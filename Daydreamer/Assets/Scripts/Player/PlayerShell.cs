@@ -5,28 +5,16 @@ using UnityEngine;
 public class PlayerShell : MonoBehaviour
 {
     /***** CORRUPTION *****/
-    [SerializeField]
-    [Range(-1, 1)]
-    public float    corruptionValue;
+    [SerializeField][Range(0.02f, 1.0f)]
+    public float    corruptionValue; // good <- 0.02 to 1 -> bad
     public float    corruptionRate;
-    public bool  corrupting = true;
+    public bool     corrupting = true;
 
     /***** PLAYER *****/
     [SerializeField]
     Material    shellMat;
     Collider    playerCol;
     // var         playerCollision;
-
-    /***** VIGNETTES *****/
-    List<Material>      roomMats;
-    private Transform   roomRoot;
-    // TODO: need to phase this out so it's handled in vignette class
-
-    /***** DISSOLVE TIMING *****/
-    int prevFrame;
-    int currFrame;
-    public float lerpDuration;
-    float timeElapsed;
 
     private void Awake() {
         playerCol = this.gameObject.transform.GetChild(0).GetComponent<Collider>();
@@ -40,50 +28,13 @@ public class PlayerShell : MonoBehaviour
         } else {
             corruptionValue -= corruptionRate;
         }
-        // TODO: change _WholeMask in shader, also make it from 0 to 1?
-        shellMat.SetFloat("_WholeMask", corruptionValue);
+        shellMat.SetFloat("_CorruptionValue", corruptionValue);
     }
 
-    private void OnTriggerEnter(Collider other) {
-        Debug.Log("OnTriggerEnter: PlayerShell");
+    // private void OnTriggerEnter(Collider other) {
+    //     Debug.Log("OnTriggerEnter: PlayerShell");
+    // }
 
-        roomRoot = other.gameObject.transform.root;
-
-        // checks layer
-        // if (other.gameObject.layer == layerIndex) {
-        //     rmMaterial = roomRoot.GetComponent<Renderer>().mat;
-        // }
-
-        // SHOULD iterate through room and add the materials of all the child objects
-        int numOfChildren = roomRoot.childCount;
-        for(int i = 0; i < numOfChildren; i++)
-        {
-            GameObject child = roomRoot.GetChild(i).gameObject;
-            Material childMat = child.GetComponent<Renderer>().material;
-            if (!roomMats.Contains(childMat)) roomMats.Add(childMat);
-        }
-
-        // if already visible, skip coroutine
-        foreach (Material rmMaterial in roomMats){
-            if (rmMaterial.GetFloat("_M") != 1)
-            {
-                StartCoroutine(MakeVisible(rmMaterial));
-            }
-        }
-
-    }
-
-    IEnumerator MakeVisible(Material rmMaterial)
-    {
-        timeElapsed = 0;
-        while (timeElapsed < lerpDuration)
-        {
-            rmMaterial.SetFloat("_WholeMask", Mathf.Lerp(-1, 1, timeElapsed / lerpDuration));
-            timeElapsed += Time.deltaTime;
-            yield return null; // wait till next frame before continuing
-        }
-        rmMaterial.SetFloat("_WholeMask", 1);
-    }
 }
 
     /***** PARTICLE SYSTEMS *****/
