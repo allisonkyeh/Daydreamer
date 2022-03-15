@@ -34,6 +34,7 @@ public class PlayerShell : MonoBehaviour
         } else if (!corrupting && (corruptionValue > 0.02f)){
             corruptionValue -= corruptionRate; // decrease displacement -> 0.02
         }
+        // maybe switch the minmax conditions with Mathf.Clamp
         shellMat.SetFloat("_CorruptionValue", corruptionValue);
     }
 }
