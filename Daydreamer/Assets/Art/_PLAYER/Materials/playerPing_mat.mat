@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: player_mat
+  m_Name: playerPing_mat
   m_Shader: {fileID: -6465566751694194690, guid: 53342d8bcd6ec430a9d5b20c7ab85b75, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,11 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_58991c1e5f8142c2a71c5915277f5389:
-        m_Texture: {fileID: 2800000, guid: 977f73f104e964f978bbadde24a7c6c6, type: 3}
+        m_Texture: {fileID: 2800000, guid: a3ff5fd0daf914d23b7c0530df6b8c81, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_c7f2546d23e84107a3680ce404b03fc9:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 08c79650044c9480589335937ac9ea45, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_ee367b863d1e428f89df57fdc5abf2dc:
@@ -68,7 +68,7 @@ Material:
     - Vector1_11a3f773e6514ee99e15711d5a97bf33: -2
     - Vector1_4cd03d7b2efb4915bacc546c5fbccab2: 1
     - Vector1_65aecc276af74ee099e651767380a5e7: -1
-    - Vector1_8db20cea9b8646bfb0b7281d9b2195ed: 7
+    - Vector1_8db20cea9b8646bfb0b7281d9b2195ed: 3
     - Vector1_9119a77f898e4831a3769ebd713ed317: 3
     - Vector1_a733b1ccabb44d358fb023bf798c478b: 5
     - Vector1_d090a899e73a46e7bc8cec20a0fb5f08: 0
@@ -77,7 +77,7 @@ Material:
     - _Alpha: 1
     - _BodyAlpha: 0.408
     - _CorruptionValue: 0.08999999
-    - _HandMask: -0.628
+    - _HandMask: -0.54
     - _Max: 0.05
     - _Min: -0.05
     - _QueueControl: 0
@@ -87,7 +87,7 @@ Material:
     - _min: 0.07
     m_Colors:
     - Color_4f2da59e4b9b49f392723a50ac7ac204: {r: 0.78431374, g: 0.6598422, b: 0.5882353, a: 0}
-    - Color_4f5bbd86720e4b5c85b725167a548d82: {r: 0, g: 0, b: 0, a: 0}
+    - Color_4f5bbd86720e4b5c85b725167a548d82: {r: 1, g: 0, b: 0.70647144, a: 0}
     - Color_796fe05f9a4946b19ad3ef1d62d86ca7: {r: 1, g: 0, b: 0, a: 0}
     - Vector2_8d111400d2794971b7521e1a2dc74b78: {r: 0, g: 1, b: 0, a: 0}
     - Vector2_a2829562d6ed4fb19c79888e866156ac: {r: 1, g: 0, b: 0, a: 0}
