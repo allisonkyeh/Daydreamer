@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        anim = this.gameObject.transform.GetChild(0).GetComponent<Animator>();
+        anim = this.gameObject.transform.GetChild(1).GetComponent<Animator>();
     }
 
     private void OnEnable() {

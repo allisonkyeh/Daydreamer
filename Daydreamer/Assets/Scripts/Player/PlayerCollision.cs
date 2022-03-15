@@ -27,30 +27,33 @@ public class PlayerCollision : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        // Debug.Log("OnTriggerEnter: PlayerCollision");
+        // Debug.Log("OnTriggerEnter: PlayerCollision " + other.name);
 
-        vignetteRoot = other.gameObject.transform.root.gameObject;
-        v = vignetteRoot.GetComponent<Vignette>();
-
-        switch (v.temp) {
-            case Vignette.Temperature.Cold:
-                p.corrupting = true;
-                break;
-            case Vignette.Temperature.Neutral:
-                p.corrupting = false;
-                break;
-            case Vignette.Temperature.Warm:
-                p.corrupting = false;
-                break;
-            default:
-                p.corrupting = true;
-                break;
+        if (other.gameObject.layer == vignetteLayer){
+            vignetteRoot = other.gameObject.transform.root.gameObject;
+            v = vignetteRoot.GetComponent<Vignette>();
+            switch (v.temp) {
+                case Vignette.Temperature.Cold:
+                    p.corrupting = true;
+                    break;
+                case Vignette.Temperature.Neutral:
+                    p.corrupting = false;
+                    break;
+                case Vignette.Temperature.Warm:
+                    p.corrupting = false;
+                    break;
+                default:
+                    p.corrupting = true;
+                    break;
+            }
         }
     }
 
     private void OnTriggerExit(Collider other) {
-        // Debug.Log("OnTriggerExit");
-        p.corrupting = true;
+        // Debug.Log("OnTriggerExit: PlayerCollision");
+        if (other.gameObject.layer == vignetteLayer){
+            p.corrupting = true;
+        }
     }
 
 }

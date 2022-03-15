@@ -5,12 +5,17 @@ using UnityEngine;
 public class Vignette : MonoBehaviour
 {
     /*** VIGNETTE DATA ***/
-    // [SerializeField][Range(0, 3)]
-    // public int      temperature;
-    public bool  inhabited;
-    public int      visits = 0;
-    public Collider vignetteCol;
+    public enum Temperature {
+        Warm,
+        Neutral,
+        Cold
+    }
+    public Temperature  temp;
+    public bool         inhabited;
+    public int          visits = 0;
+    public Collider     vignetteCol;
 
+    [SerializeField]
     Material            vignetteMaterial;
     // List<Material>      roomMats; // for if vignettes have multiple materials, but prob not
 
@@ -19,41 +24,38 @@ public class Vignette : MonoBehaviour
     int             currFrame;
     float           timeElapsed;
     public float    lerpDuration;
-    private int     layerIndex => LayerMask.NameToLayer("Room");
-
-    public enum Temperature {
-        Warm,
-        Neutral,
-        Cold
-    }
-    public Temperature temp;
 
     private void Awake() {
-        vignetteCol = this.gameObject.transform.GetChild(0).GetComponent<Collider>();
+        vignetteCol = this.gameObject.transform.GetChild(0).GetComponent<SphereCollider>();
         vignetteCol.isTrigger = true;
     }
 
+    // TODO: for now just keep characters and env the same material- maybe later char can have more
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("OnTriggerEnter: Vignette");
+        // Debug.Log("OnTriggerEnter: Vignette");
+        // Transform meshObj = this.gameObject.transform.GetChild(1);
+        // vignetteMaterial = meshObj.GetChild(0).GetComponent<Renderer>().material;
 
-        Transform meshObj = this.gameObject.transform.GetChild(1);
-        Debug.Log("this = " + this.name);
-        Debug.Log("meshObj = " + meshObj.name);
-
-        vignetteMaterial = meshObj.GetChild(0).GetComponent<Renderer>().material;
-
-        if ((other.gameObject.layer == layerIndex) && (vignetteMaterial.GetFloat("_WholeMask") != 1))
+        if (vignetteMaterial.GetFloat("_WholeMask") < 1)
         {
-            // Debug.Log("Starting coroutine");
+            Debug.Log("Starting coroutine: MakeVisible");
             StartCoroutine(MakeVisible(vignetteMaterial));
         }
+    }
+    private void OnTriggerExit(Collider other) {
+        // Debug.Log("OnTriggerExit: Vignette");
+        // Transform meshObj = this.gameObject.transform.GetChild(1);
+        // vignetteMaterial = meshObj.GetChild(0).GetComponent<Renderer>().material;
 
+        if (vignetteMaterial.GetFloat("_WholeMask") > -1)
+        {
+            Debug.Log("Starting coroutine: MakeHidden");
+            StartCoroutine(MakeHidden(vignetteMaterial));
+        }
     }
 
     IEnumerator MakeVisible(Material vignetteMaterial)
     {
-        // TODO: change ref name in shader
-
         timeElapsed = 0;
         while (timeElapsed < lerpDuration)
         {
@@ -64,11 +66,8 @@ public class Vignette : MonoBehaviour
         vignetteMaterial.SetFloat("_WholeMask", 1);
     }
 
-
     IEnumerator MakeHidden(Material vignetteMaterial)
     {
-        // TODO: change ref name in shader
-
         timeElapsed = 0;
         while (timeElapsed < lerpDuration)
         {
@@ -76,6 +75,14 @@ public class Vignette : MonoBehaviour
             timeElapsed += Time.deltaTime;
             yield return null; // wait till next frame before continuing
         }
-        vignetteMaterial.SetFloat("_WholeMask", 1);
+        vignetteMaterial.SetFloat("_WholeMask", -1);
+
+        visits++; // track how many times visited to change dialogue
+        gameObject.SetActive(false); // clear out room, but still need to track visits?
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, 5);
     }
 }

@@ -17,24 +17,25 @@ public class PlayerShell : MonoBehaviour
     // var         playerCollision;
 
     private void Awake() {
+        shellMat.SetFloat("_CorruptionValue", 0.02f);
+
         playerCol = this.gameObject.transform.GetChild(0).GetComponent<Collider>();
         playerCol.isTrigger = true;
         // playerCollision = GetComponent(PlayerCollision);
     }
 
-    private void Update() {
-        if (corrupting) {
-            corruptionValue += corruptionRate;
-        } else {
-            corruptionValue -= corruptionRate;
+    void Start() {
+        InvokeRepeating("Corrupt", 1.0f, 1.0f);
+    }
+
+    void Corrupt() {
+        if (corrupting && (corruptionValue < 1.0f)) {
+            corruptionValue += corruptionRate; // increase displacement -> 1
+        } else if (!corrupting && (corruptionValue > 0.02f)){
+            corruptionValue -= corruptionRate; // decrease displacement -> 0.02
         }
         shellMat.SetFloat("_CorruptionValue", corruptionValue);
     }
-
-    // private void OnTriggerEnter(Collider other) {
-    //     Debug.Log("OnTriggerEnter: PlayerShell");
-    // }
-
 }
 
     /***** PARTICLE SYSTEMS *****/
