@@ -6,7 +6,9 @@ public class DialogueUI : MonoBehaviour
 {
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TMP_Text textLabel;
-    [SerializeField] private DialogueObject testDialogue;
+    // [SerializeField] private DialogueObject testDialogue;
+
+    public bool IsOpen { get; private set; }
 
     private ResponseHandler responseHandler;
     private TypewriterEffect typewriterEffect;
@@ -17,11 +19,12 @@ public class DialogueUI : MonoBehaviour
         responseHandler = GetComponent<ResponseHandler>();
 
         CloseDialogueBox();
-        ShowDialogue(testDialogue);
+        // ShowDialogue(testDialogue);
     }
 
     public void ShowDialogue(DialogueObject dialogueObject)
     {
+        IsOpen = true;
         dialogueBox.SetActive(true);
         StartCoroutine(StepThroughDialogue(dialogueObject));
     }
@@ -37,7 +40,10 @@ public class DialogueUI : MonoBehaviour
 
             if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses) break;
 
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+            // Advance text with button
+             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
+            // yield return new WaitUntil(() => Input.GetMouseButton(0));
+
         }
 
         if (dialogueObject.HasResponses){
@@ -49,6 +55,7 @@ public class DialogueUI : MonoBehaviour
 
     private void CloseDialogueBox()
     {
+        IsOpen = false;
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
     }

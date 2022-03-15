@@ -27,7 +27,7 @@ public class ResponseHandler : MonoBehaviour
             responseButton.gameObject.SetActive(true);
             responseButton.GetComponent<TMP_Text>().text = response.ResponseText;
             responseButton.GetComponent<Button>().onClick.AddListener(() => OnPickedResponse(response));
-            // adds event callback when you click a button
+            // adds event callback when you click a UI button
 
             tempResponseButtons.Add(responseButton);
             responseBoxHeight += responseButtonTemplate.sizeDelta.y;

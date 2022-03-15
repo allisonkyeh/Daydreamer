@@ -4,26 +4,25 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private InputActionReference movementControl;
-    [SerializeField]
-    private InputActionReference jumpControl;
+    [SerializeField] private InputActionReference movementControl;
+    [SerializeField] private InputActionReference jumpControl;
 
     private Animator anim;
 
-    [SerializeField]
-    private float playerSpeed   = 2.0f;
-    [SerializeField]
-    private float jumpHeight    = 1.0f;
-    [SerializeField]
-    private float gravityValue  = -9.81f;
-    [SerializeField]
-    private float rotationSpeed = 4f;
+    [SerializeField] private float playerSpeed   = 2.0f;
+    [SerializeField] private float jumpHeight    = 1.0f;
+    [SerializeField] private float gravityValue  = -9.81f;
+    [SerializeField] private float rotationSpeed = 4f;
 
     private CharacterController controller;
     private Vector3             playerVelocity;
     private bool                groundedPlayer;
     private Transform           cameraMainTransform;
+
+    /***** DIALOGUE *****/
+    [SerializeField] private DialogueUI dialogueUI; // canvas goes in this
+    public DialogueUI DialogueUI => dialogueUI;
+    public IInteractable Interactable { get; set; }
 
     void Awake()
     {
@@ -48,6 +47,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (dialogueUI.IsOpen) return; // prevent movement while dialogue
+
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
@@ -83,7 +84,9 @@ public class PlayerController : MonoBehaviour
             transform.rotation  = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
         }
 
-
+        if (Input.GetKeyDown(KeyCode.E)) {
+            Interactable?.Interact(this);  // if Interactable != null
+        }
 
     }
 }
