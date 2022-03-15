@@ -18,6 +18,8 @@ public class Vignette : MonoBehaviour
     [SerializeField]
     Material            vignetteMaterial;
     // List<Material>      roomMats; // for if vignettes have multiple materials, but prob not
+    private string      playerTag = "Player";
+
 
     /***** DISSOLVE TIMING *****/
     int             prevFrame;
@@ -36,7 +38,10 @@ public class Vignette : MonoBehaviour
         // Transform meshObj = this.gameObject.transform.GetChild(1);
         // vignetteMaterial = meshObj.GetChild(0).GetComponent<Renderer>().material;
 
-        if (vignetteMaterial.GetFloat("_WholeMask") < 1)
+        // Debug.Log("OnTriggerEnter Collider: " + other.gameObject.tag);
+
+
+        if (other.gameObject.tag == playerTag && vignetteMaterial.GetFloat("_WholeMask") < 1)
         {
             Debug.Log("Starting coroutine: MakeVisible");
             StartCoroutine(MakeVisible(vignetteMaterial));
@@ -47,7 +52,7 @@ public class Vignette : MonoBehaviour
         // Transform meshObj = this.gameObject.transform.GetChild(1);
         // vignetteMaterial = meshObj.GetChild(0).GetComponent<Renderer>().material;
 
-        if (vignetteMaterial.GetFloat("_WholeMask") > -1)
+        if (other.gameObject.tag == playerTag && vignetteMaterial.GetFloat("_WholeMask") > -1)
         {
             Debug.Log("Starting coroutine: MakeHidden");
             StartCoroutine(MakeHidden(vignetteMaterial));

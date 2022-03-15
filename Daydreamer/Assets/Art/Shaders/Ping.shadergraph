@@ -85,9 +85,6 @@
             "m_Id": "d85eec7efb2f43f5b7a1872c260b2f28"
         },
         {
-            "m_Id": "c4bd36fdd48a44699a95d1e7d07fcf4f"
-        },
-        {
             "m_Id": "3343439ce02e4652a93dd970ca645cb2"
         },
         {
@@ -1129,8 +1126,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 458.0,
-            "y": 537.4999389648438
+            "x": 456.5,
+            "y": 537.5
         },
         "m_Blocks": [
             {
@@ -1138,9 +1135,6 @@
             },
             {
                 "m_Id": "d85eec7efb2f43f5b7a1872c260b2f28"
-            },
-            {
-                "m_Id": "c4bd36fdd48a44699a95d1e7d07fcf4f"
             },
             {
                 "m_Id": "3343439ce02e4652a93dd970ca645cb2"
@@ -6150,21 +6144,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "b780da73465b4c20a5c7ffaedaed1a1d",
-    "m_Id": 0,
-    "m_DisplayName": "Smoothness",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Smoothness",
-    "m_StageCapability": 2,
-    "m_Value": 0.0,
-    "m_DefaultValue": 0.5,
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.NormalVectorNode",
     "m_ObjectId": "b788d033109f486b9e03e23566d1c12b",
     "m_Group": {
@@ -6501,39 +6480,6 @@
         "z": 0.0,
         "w": 0.0
     }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.BlockNode",
-    "m_ObjectId": "c4bd36fdd48a44699a95d1e7d07fcf4f",
-    "m_Group": {
-        "m_Id": ""
-    },
-    "m_Name": "SurfaceDescription.Smoothness",
-    "m_DrawState": {
-        "m_Expanded": true,
-        "m_Position": {
-            "serializedVersion": "2",
-            "x": 0.0,
-            "y": 0.0,
-            "width": 0.0,
-            "height": 0.0
-        }
-    },
-    "m_Slots": [
-        {
-            "m_Id": "b780da73465b4c20a5c7ffaedaed1a1d"
-        }
-    ],
-    "synonyms": [],
-    "m_Precision": 0,
-    "m_PreviewExpanded": true,
-    "m_PreviewMode": 0,
-    "m_CustomColors": {
-        "m_SerializableColors": []
-    },
-    "m_SerializedDescriptor": "SurfaceDescription.Smoothness"
 }
 
 {
