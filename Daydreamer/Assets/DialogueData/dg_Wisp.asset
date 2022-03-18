@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: dg_Wisp
   m_EditorClassIdentifier: 
   dialogue:
-  - What are you doing here?
-  - You don't have anywhere else to go
+  - Another presence....
+  - Why don't you stay a while?
+  - I happen to enjoy the sway of sunflowers..
   responses: []

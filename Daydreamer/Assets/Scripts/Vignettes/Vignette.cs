@@ -16,7 +16,7 @@ public class Vignette : MonoBehaviour
     [SerializeField] public Collider     vignetteCol;
     [SerializeField] Material            vignetteMaterial;
     // List<Material>      roomMats; // for if vignettes have multiple materials, but prob not
-    private string      playerTag = "Player";
+    private string      shellTag = "ShellTrigger";
     // using collision matrix to ignore shell x npc collision
 
     /***** DISSOLVE TIMING *****/
@@ -43,7 +43,7 @@ public class Vignette : MonoBehaviour
 
         // Debug.Log("OnTriggerEnter Collider: " + other.gameObject.tag);
 
-        if (other.gameObject.tag == playerTag && vignetteMaterial.GetFloat("_WholeMask") < 1)
+        if (other.gameObject.tag == shellTag && vignetteMaterial.GetFloat("_WholeMask") < 1)
         {
             Debug.Log("Starting coroutine: MakeVisible" + other.gameObject.name);
             StartCoroutine(MakeVisible(vignetteMaterial));
@@ -54,7 +54,7 @@ public class Vignette : MonoBehaviour
         // Transform meshObj = this.gameObject.transform.GetChild(1);
         // vignetteMaterial = meshObj.GetChild(0).GetComponent<Renderer>().material;
 
-        if (other.gameObject.tag == playerTag && vignetteMaterial.GetFloat("_WholeMask") > -1)
+        if (other.gameObject.tag == shellTag && vignetteMaterial.GetFloat("_WholeMask") > -1)
         {
             Debug.Log("Starting coroutine: MakeHidden" + other.gameObject.name);
             StartCoroutine(MakeHidden(vignetteMaterial));
@@ -63,8 +63,8 @@ public class Vignette : MonoBehaviour
 
     IEnumerator MakeVisible(Material vignetteMaterial)
     {
-        ambience.Pause();
         vignetteMusic.Play();
+        ambience.Pause();
 
         timeElapsed = 0;
         while (timeElapsed < lerpDuration)
