@@ -19,8 +19,6 @@ public class PlayerShell : MonoBehaviour
     private void Awake() {
         shellMat.SetFloat("_CorruptionValue", 0.02f);
 
-        playerCol = this.gameObject.transform.GetChild(0).GetComponent<Collider>();
-        playerCol.isTrigger = true;
         // playerCollision = GetComponent(PlayerCollision);
     }
 
@@ -32,7 +30,7 @@ public class PlayerShell : MonoBehaviour
         if (corrupting && (corruptionValue < 1.0f)) {
             corruptionValue += corruptionRate; // increase displacement -> 1
         } else if (!corrupting && (corruptionValue > 0.02f)){
-            corruptionValue -= corruptionRate; // decrease displacement -> 0.02
+            corruptionValue = corruptionValue - (2.0f * corruptionRate); // decrease displacement -> 0.02
         }
         // maybe switch the minmax conditions with Mathf.Clamp
         shellMat.SetFloat("_CorruptionValue", corruptionValue);

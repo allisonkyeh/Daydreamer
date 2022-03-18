@@ -18,6 +18,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void Awake() {
         playerCol = this.gameObject.transform.GetChild(0).GetComponent<Collider>();
+        // playerCol = this.gameObject.GetComponent<Collider>();
         playerCol.isTrigger = true;
 
         p = this.gameObject.GetComponent<PlayerShell>();
@@ -51,6 +52,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnTriggerExit(Collider other) {
         // Debug.Log("OnTriggerExit: PlayerCollision");
+        // FIXME: it doesn't start corrupting? also check playershell conditions
         if (other.gameObject.layer == vignetteLayer){
             p.corrupting = true;
         }
