@@ -76,7 +76,7 @@ Material:
     - Vector1_eb160254423e493f871b4e03a9235517: 0.02
     - _Alpha: 1
     - _BodyAlpha: 0.408
-    - _CorruptionValue: 0.019999985
+    - _CorruptionValue: 0.009999994
     - _HandMask: -0.628
     - _Max: 0.05
     - _Min: -0.05

@@ -45,7 +45,7 @@ public class Vignette : MonoBehaviour
 
         if (other.gameObject.tag == shellTag && vignetteMaterial.GetFloat("_WholeMask") < 1)
         {
-            Debug.Log("Starting coroutine: MakeVisible" + other.gameObject.name);
+            // Debug.Log("Starting coroutine: MakeVisible" + other.gameObject.name);
             StartCoroutine(MakeVisible(vignetteMaterial));
         }
     }
@@ -56,7 +56,7 @@ public class Vignette : MonoBehaviour
 
         if (other.gameObject.tag == shellTag && vignetteMaterial.GetFloat("_WholeMask") > -1)
         {
-            Debug.Log("Starting coroutine: MakeHidden" + other.gameObject.name);
+            // Debug.Log("Starting coroutine: MakeHidden" + other.gameObject.name);
             StartCoroutine(MakeHidden(vignetteMaterial));
         }
     }

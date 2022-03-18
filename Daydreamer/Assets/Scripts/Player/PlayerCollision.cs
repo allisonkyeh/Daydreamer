@@ -28,7 +28,7 @@ public class PlayerCollision : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        // Debug.Log("OnTriggerEnter: PlayerCollision " + other.name);
+        Debug.Log("OnTriggerEnter: PlayerCollision " + other.name);
 
         if (other.gameObject.layer == vignetteLayer){
             vignetteRoot = other.gameObject.transform.root.gameObject;
