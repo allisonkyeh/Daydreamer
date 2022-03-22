@@ -52,7 +52,7 @@ Material:
     - _Dissolve: -2.28
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _WholeMask: 1
+    - _WholeMask: -1
     m_Colors:
     - Color_e644698d096243fcb4fb847924fdefed: {r: 0.253115, g: 0.315503, b: 0.6792453, a: 0}
     - Vector2_628bec8b7cda420195d95053423718fd: {r: 0, g: -0.1, b: 0, a: 0}
