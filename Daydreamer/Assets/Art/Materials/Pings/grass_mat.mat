@@ -48,6 +48,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _HandTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_086c552ece454fd2a4cd9941f0fd0928_Texture_1:
         m_Texture: {fileID: 2800000, guid: 3ba26933771034d26a011a4b7503301a, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -89,6 +93,7 @@ Material:
     - Vector1_eb160254423e493f871b4e03a9235517: 0.1
     - _Alpha: 1
     - _BodyAlpha: 0.565
+    - _BodyTextureOffsetSpeed: 0
     - _CorruptionValue: 0.092
     - _HandMask: -1
     - _Max: 0
@@ -107,5 +112,7 @@ Material:
     - Vector2_b45a7a65a4ae4f9fa6f41a26f8c6a13a: {r: 1, g: 4.53, b: 0, a: 0}
     - Vector2_caff66e718344f75bbd0b450c4a5b95e: {r: 0, g: 0, b: 0, a: 0}
     - _BodyColor: {r: 0.14150941, g: 0.053673014, b: 0.036712352, a: 0}
+    - _BodyPingOffsetSpeed: {r: 0, g: 1, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
     - _Offset: {r: 0, g: 0.3, b: 0, a: 0}
   m_BuildTextureStacks: []

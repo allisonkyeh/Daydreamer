@@ -12,12 +12,25 @@ public class PlayerShell : MonoBehaviour
 
     /***** PLAYER *****/
     [SerializeField]
-    Material    shellMat;
-    Collider    playerCol;
+    Material        shellMat;
+    private Color   addColor;
+    private Color   targetColor;
+    Collider        playerCol;
     // var         playerCollision;
 
+    /***** DISSOLVE TIMING *****/
+    [SerializeField] public float    deathDuration;
+    private bool    dying = false;
+    private int     prevFrame;
+    private int     currFrame;
+    private float   timeElapsed;
+
     private void Awake() {
+        targetColor = new Color(1, 0, 0, 1); //red
+        addColor = new Color(1, 1, 1, 1);
         shellMat.SetFloat("_CorruptionValue", 0.02f);
+        shellMat.SetColor("_Color", addColor);
+        shellMat.SetFloat("_WholeMask", 1);
 
         // playerCollision = GetComponent(PlayerCollision);
     }
@@ -34,7 +47,40 @@ public class PlayerShell : MonoBehaviour
         }
         // maybe switch the minmax conditions with Mathf.Clamp
         shellMat.SetFloat("_CorruptionValue", corruptionValue);
+
+        Color currentColor = shellMat.GetColor("_Color");
+
+        if (currentColor != targetColor) {
+            addColor.g -= 0.02f;
+            addColor.b -= 0.02f;
+            addColor.g = Mathf.Clamp(addColor.g, 0, 1);
+            addColor.b = Mathf.Clamp(addColor.b, 0, 1);
+            shellMat.SetColor("_Color", addColor);
+        } else if (currentColor == targetColor && !dying) {
+            StartCoroutine(Death());
+        }
     }
+
+    IEnumerator Death()
+    {
+        dying = true;
+        timeElapsed = 0;
+        while (timeElapsed < deathDuration)
+        {
+            shellMat.SetFloat("_WholeMask", Mathf.Lerp(1, -1, timeElapsed / deathDuration));
+            timeElapsed += Time.deltaTime;
+            yield return null; // wait till next frame before continuing
+        }
+        shellMat.SetFloat("_WholeMask", -1);
+    }
+
+    // TODO:
+    IEnumerator Revive()
+    {
+        yield return null;
+    }
+
+
 }
 
     /***** PARTICLE SYSTEMS *****/
