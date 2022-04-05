@@ -47,24 +47,24 @@ Material:
     m_Ints: []
     m_Floats:
     - _BaseScale: 0.56
-    - _BaseSpeed: 0.4
+    - _BaseSpeed: 0.49
     - _BaseStrength: 2
-    - _CurvatureRadius: 51.71
+    - _CurvatureRadius: 70.6
     - _EmissionStrength: 0.05
     - _FadeDepth: 7.67
     - _FresnelOpacity: 0.1
     - _FresnelPower: 26.45
     - _NoiseEdge1: 0.46
     - _NoiseEdge2: 4.55
-    - _NoiseHeight: 3.21
+    - _NoiseHeight: 3.4
     - _NoisePower: 2
     - _NoiseScale: 0.18
     - _NoiseSpeed: 0.8
-    - _Opacity: 0.17
+    - _Opacity: 0.4
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _ColorPeak: {r: 0.18867922, g: 0.1450694, b: 0.1450694, a: 0}
+    - _ColorPeak: {r: 0.20754719, g: 0.065592736, b: 0.065592736, a: 0}
     - _ColorValley: {r: 0, g: 0, b: 0, a: 0}
     - _NoiseRemap: {r: 0, g: 1, b: -1, a: 1}
     - _RotateProjection: {r: 1, g: 0, b: 0, a: 90}

@@ -19,11 +19,16 @@ public class PlayerShell : MonoBehaviour
     // var         playerCollision;
 
     /***** DISSOLVE TIMING *****/
-    [SerializeField] public float    deathDuration;
+    [SerializeField] public float deathDuration;
     private bool    dying = false;
     private int     prevFrame;
     private int     currFrame;
     private float   timeElapsed;
+
+    private float pingpongCorruption = 0;
+    [SerializeField] private float pingpongSpeed;
+    [SerializeField] private float pingpongThreshold = 0.1f;
+
 
     private void Awake() {
         targetColor = new Color(1, 0, 0, 1); //red
@@ -39,26 +44,46 @@ public class PlayerShell : MonoBehaviour
         InvokeRepeating("Corrupt", 1.0f, 1.0f);
     }
 
+    void Update() {
+        if (corruptionValue < pingpongThreshold || !corrupting) {
+            shellMat.SetFloat("_CorruptionValue", corruptionValue);
+        } else {
+            pingpongCorruption = Mathf.PingPong(Time.time / 2f, corruptionValue) + 0.02f;
+            shellMat.SetFloat("_CorruptionValue", pingpongCorruption);
+        }
+    }
+
     void Corrupt() {
+        Color currentColor = shellMat.GetColor("_Color");
+        Color baseColor = new Color(1, 1, 1, 1);
+
         if (corrupting && (corruptionValue < 1.0f)) {
+
             corruptionValue += corruptionRate; // increase displacement -> 1
+
+            if (currentColor != targetColor) {
+                addColor.g -= 0.02f;
+                addColor.b -= 0.02f;
+            } else if (currentColor == targetColor && !dying) {
+                StartCoroutine(Death());
+            }
+
         } else if (!corrupting && (corruptionValue > 0.02f)){
             corruptionValue = corruptionValue - (2.0f * corruptionRate); // decrease displacement -> 0.02
+
+            if (currentColor != baseColor) {
+                addColor.g += 0.02f;
+                addColor.b += 0.02f;
+            }
         }
         // maybe switch the minmax conditions with Mathf.Clamp
-        shellMat.SetFloat("_CorruptionValue", corruptionValue);
+        // pingpongCorruption = Mathf.PingPong(Time.time, corruptionValue) + 0.02f;
+        // shellMat.SetFloat("_CorruptionValue", pingpongCorruption);
 
-        Color currentColor = shellMat.GetColor("_Color");
+        addColor.g = Mathf.Clamp(addColor.g, 0, 1);
+        addColor.b = Mathf.Clamp(addColor.b, 0, 1);
+        shellMat.SetColor("_Color", addColor);
 
-        if (currentColor != targetColor) {
-            addColor.g -= 0.02f;
-            addColor.b -= 0.02f;
-            addColor.g = Mathf.Clamp(addColor.g, 0, 1);
-            addColor.b = Mathf.Clamp(addColor.b, 0, 1);
-            shellMat.SetColor("_Color", addColor);
-        } else if (currentColor == targetColor && !dying) {
-            StartCoroutine(Death());
-        }
     }
 
     IEnumerator Death()

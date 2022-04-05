@@ -27,12 +27,16 @@ public class Vignette : MonoBehaviour
 
     /***** AUDIO *****/
     [SerializeField] AudioSource vignetteMusic;
-    [SerializeField] AudioSource ambience;
+    [SerializeField] GameObject ambience;
+    [SerializeField] AudioSource vignetteExit;
+    Component[] amb;
 
     private void Awake() {
         // vignetteCol = this.gameObject.GetComponent<SphereCollider>();
         // vignetteCol.isTrigger = true;
         vignetteMaterial.SetFloat("_WholeMask", -1);
+
+        amb = ambience.GetComponents<AudioSource>();
     }
 
     // TODO: for now just keep characters and env the same material- maybe later char can have more
@@ -64,7 +68,7 @@ public class Vignette : MonoBehaviour
     IEnumerator MakeVisible(Material vignetteMaterial)
     {
         vignetteMusic.Play();
-        ambience.Pause();
+        foreach (AudioSource a in amb) a.Pause();
 
         timeElapsed = 0;
         while (timeElapsed < lerpDuration)
@@ -79,6 +83,7 @@ public class Vignette : MonoBehaviour
     IEnumerator MakeHidden(Material vignetteMaterial)
     {
         timeElapsed = 0;
+        vignetteExit.Play();
         while (timeElapsed < lerpDuration)
         {
             vignetteMaterial.SetFloat("_WholeMask", Mathf.Lerp(1, -1, timeElapsed / lerpDuration));
@@ -89,7 +94,7 @@ public class Vignette : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
         vignetteMusic.Stop();
-        ambience.Play();
+        foreach (AudioSource a in amb) a.Play();
 
         visits++; // track how many times visited to change dialogue
         gameObject.SetActive(false); // clear out room, but still need to track visits?

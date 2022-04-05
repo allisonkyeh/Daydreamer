@@ -91,7 +91,7 @@ Material:
     - Vector1_d090a899e73a46e7bc8cec20a0fb5f08: 0
     - Vector1_d0b2a0cc48de413d8908c7b16417c5cb: 1
     - Vector1_eb160254423e493f871b4e03a9235517: 0.1
-    - _Alpha: 1
+    - _Alpha: 0.859
     - _BodyAlpha: 0.565
     - _BodyTextureOffsetSpeed: 0
     - _CorruptionValue: 0.092
@@ -113,6 +113,6 @@ Material:
     - Vector2_caff66e718344f75bbd0b450c4a5b95e: {r: 0, g: 0, b: 0, a: 0}
     - _BodyColor: {r: 0.14150941, g: 0.053673014, b: 0.036712352, a: 0}
     - _BodyPingOffsetSpeed: {r: 0, g: 1, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 0.3773585, g: 0.19608963, b: 0.076539695, a: 0}
     - _Offset: {r: 0, g: 0.3, b: 0, a: 0}
   m_BuildTextureStacks: []

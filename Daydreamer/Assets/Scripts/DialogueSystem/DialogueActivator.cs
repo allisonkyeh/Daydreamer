@@ -4,6 +4,8 @@ using UnityEngine;
 public class DialogueActivator : MonoBehaviour, IInteractable
 {
     [SerializeField] private DialogueObject dialogueObject;
+    [SerializeField] private ParticleSystem particles;
+
 
     private void OnTriggerEnter(Collider other) {
         // checks for player tag and player component
@@ -18,9 +20,11 @@ public class DialogueActivator : MonoBehaviour, IInteractable
                 player.Interactable = null;
             }
         }
+        if (particles.isPlaying) particles.Stop();
     }
 
     public void Interact (PlayerController player) {
+        particles.Play();
         player.DialogueUI.ShowDialogue(dialogueObject);
     }
 }
