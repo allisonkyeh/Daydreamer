@@ -101,7 +101,7 @@ Material:
     - Vector2_caff66e718344f75bbd0b450c4a5b95e: {r: 0, g: 0, b: 0, a: 0}
     - _BodyColor: {r: 1, g: 1, b: 1, a: 0}
     - _BodyPingOffsetSpeed: {r: 0, g: 0.5, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 0.96000004, b: 0.96000004, a: 1}
     - _Offset: {r: 0, g: 0.3, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8698270844900655529

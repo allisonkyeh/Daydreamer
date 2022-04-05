@@ -13,6 +13,8 @@ public class DialogueUI : MonoBehaviour
     private ResponseHandler responseHandler;
     private TypewriterEffect typewriterEffect;
 
+    [SerializeField] AudioSource npcVoice;
+
     private void Start()
     {
         typewriterEffect = GetComponent<TypewriterEffect>();
@@ -26,6 +28,7 @@ public class DialogueUI : MonoBehaviour
     {
         IsOpen = true;
         dialogueBox.SetActive(true);
+        npcVoice.Play();
         StartCoroutine(StepThroughDialogue(dialogueObject));
     }
 
@@ -58,6 +61,7 @@ public class DialogueUI : MonoBehaviour
         IsOpen = false;
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
+        npcVoice.Stop();
     }
 
 }
