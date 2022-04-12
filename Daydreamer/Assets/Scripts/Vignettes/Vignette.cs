@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Vignette : MonoBehaviour
 {
+    // if smtg isn't working then double check that all serialized fields are set...
+
     /*** VIGNETTE DATA ***/
+    private VignetteManager vmanager;
+    [HideInInspector] public int visits = 0;
     public enum Temperature {
         Warm,
         Neutral,
@@ -12,63 +16,83 @@ public class Vignette : MonoBehaviour
     }
     [SerializeField] public Temperature  temp;
     [SerializeField] public bool         inhabited;
-    [SerializeField] public int          visits = 0;
+
+    [Space]
     [SerializeField] public Collider     vignetteCol;
     [SerializeField] Material            vignetteMaterial;
     // List<Material>      roomMats; // for if vignettes have multiple materials, but prob not
-    private string      shellTag = "ShellTrigger";
+
+    /***** PLAYER *****/
+    [Space]
+    private GameObject player;
+    private float distFromPlayer;
+    [SerializeField]
+    private float maxDistFromPlayer;
+
+    /***** COLLISIONS *****/
+    private string  shellTag = "ShellTrigger";
     // using collision matrix to ignore shell x npc collision
 
     /***** DISSOLVE TIMING *****/
-    [SerializeField] public float    lerpDuration;
+    [Space]
+    [SerializeField] public float lerpDuration;
     private int     prevFrame;
     private int     currFrame;
     private float   timeElapsed;
+    [SerializeField] private float maxLifetime;
+    private float   startTime;
+    private float   lifeTime;
 
     /***** AUDIO *****/
-    [SerializeField] AudioSource vignetteMusic;
-    [SerializeField] GameObject ambience;
-    [SerializeField] AudioSource vignetteExit;
-    Component[] amb;
+    // [SerializeField] AudioSource vignetteMusic;
+    // [SerializeField] GameObject ambience;
+    // [SerializeField] AudioSource vignetteExit;
+    // Component[] amb;
 
     private void Awake() {
         // vignetteCol = this.gameObject.GetComponent<SphereCollider>();
         // vignetteCol.isTrigger = true;
         vignetteMaterial.SetFloat("_WholeMask", -1);
+        player = GameObject.Find("PLAYER");
+        vmanager = GameObject.Find("VIGMANAGER").GetComponent<VignetteManager>();
 
-        amb = ambience.GetComponents<AudioSource>();
+        startTime = Time.time;
+
+    //    amb = ambience.GetComponents<AudioSource>();
     }
 
-    // TODO: for now just keep characters and env the same material- maybe later char can have more
+    private void Update() {
+        // Clean if too old
+        lifeTime = Time.time - startTime;
+        if (lifeTime > maxLifetime) {
+            // only if player hasn't gone in yet.. need to do smtg with MakeHidden otherwise
+            if (vignetteMaterial.GetFloat("_WholeMask") == -1) CleanUp();
+        }
+
+        // Clean if too far
+        distFromPlayer = Vector3.Distance(gameObject.transform.position, player.transform.position);
+        if (distFromPlayer > maxDistFromPlayer) {
+            Debug.Log("Too far. Cleaning vignette.");
+            CleanUp();
+        }
+    }
+
     private void OnTriggerEnter(Collider other) {
-        // Debug.Log("OnTriggerEnter: Vignette " + other.gameObject.name);
-        // Transform meshObj = this.gameObject.transform.GetChild(1);
-        // vignetteMaterial = meshObj.GetChild(0).GetComponent<Renderer>().material;
-
-        // Debug.Log("OnTriggerEnter Collider: " + other.gameObject.tag);
-
-        if (other.gameObject.tag == shellTag && vignetteMaterial.GetFloat("_WholeMask") < 1)
-        {
-            // Debug.Log("Starting coroutine: MakeVisible" + other.gameObject.name);
+        if (other.gameObject.tag == shellTag && vignetteMaterial.GetFloat("_WholeMask") < 1) {
             StartCoroutine(MakeVisible(vignetteMaterial));
         }
     }
-    private void OnTriggerExit(Collider other) {
-        // Debug.Log("OnTriggerExit: Vignette " + other.gameObject.name);
-        // Transform meshObj = this.gameObject.transform.GetChild(1);
-        // vignetteMaterial = meshObj.GetChild(0).GetComponent<Renderer>().material;
 
-        if (other.gameObject.tag == shellTag && vignetteMaterial.GetFloat("_WholeMask") > -1)
-        {
-            // Debug.Log("Starting coroutine: MakeHidden" + other.gameObject.name);
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.tag == shellTag && vignetteMaterial.GetFloat("_WholeMask") > -1) {
             StartCoroutine(MakeHidden(vignetteMaterial));
         }
     }
 
     IEnumerator MakeVisible(Material vignetteMaterial)
     {
-        vignetteMusic.Play();
-        foreach (AudioSource a in amb) a.Pause();
+        // vignetteMusic.Play();
+        // foreach (AudioSource a in amb) a.Pause();
 
         timeElapsed = 0;
         while (timeElapsed < lerpDuration)
@@ -83,7 +107,7 @@ public class Vignette : MonoBehaviour
     IEnumerator MakeHidden(Material vignetteMaterial)
     {
         timeElapsed = 0;
-        vignetteExit.Play();
+        // vignetteExit.Play();
         while (timeElapsed < lerpDuration)
         {
             vignetteMaterial.SetFloat("_WholeMask", Mathf.Lerp(1, -1, timeElapsed / lerpDuration));
@@ -93,11 +117,16 @@ public class Vignette : MonoBehaviour
         vignetteMaterial.SetFloat("_WholeMask", -1);
 
         yield return new WaitForSeconds(2.0f);
-        vignetteMusic.Stop();
-        foreach (AudioSource a in amb) a.Play();
+        // vignetteMusic.Stop();
+        // foreach (AudioSource a in amb) a.Play();
 
-        visits++; // track how many times visited to change dialogue
-        gameObject.SetActive(false); // clear out room, but still need to track visits?
+        CleanUp();
+    }
+
+    void CleanUp()
+    {
+        vmanager.activeVigs--;
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmos() {
