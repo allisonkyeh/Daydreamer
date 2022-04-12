@@ -62,14 +62,19 @@ public class Vignette : MonoBehaviour
     }
 
     private void Update() {
-        // Clean if too old
+        CleanIfOld();
+        CleanIfFar();
+    }
+
+    private void CleanIfOld() {
         lifeTime = Time.time - startTime;
         if (lifeTime > maxLifetime) {
             // only if player hasn't gone in yet.. need to do smtg with MakeHidden otherwise
             if (vignetteMaterial.GetFloat("_WholeMask") == -1) CleanUp();
         }
+    }
 
-        // Clean if too far
+    private void CleanIfFar() {
         distFromPlayer = Vector3.Distance(gameObject.transform.position, player.transform.position);
         if (distFromPlayer > maxDistFromPlayer) {
             Debug.Log("Too far. Cleaning vignette.");

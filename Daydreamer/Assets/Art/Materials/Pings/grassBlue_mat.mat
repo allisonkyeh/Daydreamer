@@ -100,7 +100,7 @@ Material:
     - _Min: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _WholeMask: 1
+    - _WholeMask: -1
     - _max: 0
     - _min: 0
     m_Colors:
