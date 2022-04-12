@@ -66,7 +66,7 @@ Material:
     - Vector1_31badfa2f2494f13aff08b4daa9763c2: 0.42
     - Vector1_43257789a71e44a490928ec34b6b3066: 6.14
     - Vector1_4cd03d7b2efb4915bacc546c5fbccab2: 3
-    - Vector1_61d549c5cfda4caf869442843b4904b9: 1
+    - Vector1_61d549c5cfda4caf869442843b4904b9: 0.885
     - Vector1_65aecc276af74ee099e651767380a5e7: -1
     - Vector1_8db20cea9b8646bfb0b7281d9b2195ed: 5
     - Vector1_9119a77f898e4831a3769ebd713ed317: 10
@@ -75,6 +75,7 @@ Material:
     - Vector1_d0b2a0cc48de413d8908c7b16417c5cb: 1
     - Vector1_eb160254423e493f871b4e03a9235517: 0.01
     - _HandMask: -0.8
+    - _Mask: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _WholeMask: -1

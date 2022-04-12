@@ -24,6 +24,7 @@ public class VignetteManager : MonoBehaviour
     void Spawn()
     {
         if (activeVigs < activeMax) {
+            // spawn in a donut shaped area around the player
             Vector3 newPos  = player.transform.position;
             Vector3 d       = new Vector3 (Random.Range(spawnMinDist, spawnMaxDist), 0, 0);
             Quaternion a    = Quaternion.Euler(0, Random.Range(0, 360), 0);

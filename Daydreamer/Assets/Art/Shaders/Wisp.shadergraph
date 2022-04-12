@@ -2617,7 +2617,7 @@
     "m_DefaultRefNameVersion": 0,
     "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector1_61d549c5cfda4caf869442843b4904b9",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_Mask",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
