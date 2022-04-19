@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class VignetteManager : MonoBehaviour
@@ -6,24 +8,29 @@ public class VignetteManager : MonoBehaviour
     public GameObject player;
 
     /*** VIGNETTE ***/
-    [SerializeField] public GameObject[] vignettes;
+    [SerializeField] public List<GameObject> vignettes = new List<GameObject>();
     [SerializeField] public float   spawnMinDist;
     [SerializeField] public float   spawnMaxDist;
     [SerializeField] public float   spawnRate;
     [SerializeField] public int     activeMax;
     [HideInInspector]
-    public int activeVigs = 0;
+    public int activeNum = 0;
+    [HideInInspector]
+    public List<GameObject> activeVignettes = new List<GameObject>();
     private int vignetteLayer => LayerMask.NameToLayer("Vignette");
 
     void Start()
     {
         Spawn();
+        // Vector3 newPos = player.transform.forward + Vector3(0, 0, 10);
+        // GameObject v = (GameObject) Instantiate(vignettes[0], newPos, Quaternion.identity);
+
         InvokeRepeating("Spawn", 10.0f, spawnRate);
     }
 
     void Spawn()
     {
-        if (activeVigs < activeMax) {
+        if (activeNum < activeMax) {
             // spawn in a donut shaped area around the player
             Vector3 newPos  = player.transform.position;
             Vector3 d       = new Vector3 (Random.Range(spawnMinDist, spawnMaxDist), 0, 0);
@@ -32,7 +39,7 @@ public class VignetteManager : MonoBehaviour
             newPos += d;
             newPos = a * (newPos - player.transform.position) + player.transform.position;
 
-            int i = Random.Range(0, vignettes.Length);
+            int i = Random.Range(0, vignettes.Count);
             GameObject v = (GameObject) Instantiate(vignettes[i], newPos, Quaternion.identity);
 
             Collider[] intersections = Physics.OverlapSphere(newPos, 7);
@@ -44,7 +51,9 @@ public class VignetteManager : MonoBehaviour
                 Debug.Log("Destroyed an instantiated vignette.");
                 Destroy(v);
             } else {
-                activeVigs++;
+                activeNum++;
+                activeVignettes.Add(vignettes[i]);
+                vignettes.RemoveAt(i);
             }
         }
     }

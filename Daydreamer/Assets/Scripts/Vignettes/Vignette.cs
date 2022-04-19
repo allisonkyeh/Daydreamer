@@ -130,7 +130,7 @@ public class Vignette : MonoBehaviour
 
     void CleanUp()
     {
-        vmanager.activeVigs--;
+        vmanager.activeNum--;
         Destroy(gameObject);
     }
 
