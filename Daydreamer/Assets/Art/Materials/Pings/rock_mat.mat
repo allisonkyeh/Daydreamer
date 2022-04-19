@@ -31,6 +31,14 @@ Material:
         m_Texture: {fileID: 2800000, guid: f93f02bac7d764c9693a395ab0ede9b9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BodyPingMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HandTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_086c552ece454fd2a4cd9941f0fd0928_Texture_1:
         m_Texture: {fileID: 2800000, guid: 3ba26933771034d26a011a4b7503301a, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -70,6 +78,9 @@ Material:
     - Vector1_d090a899e73a46e7bc8cec20a0fb5f08: 0
     - Vector1_d0b2a0cc48de413d8908c7b16417c5cb: 1
     - Vector1_eb160254423e493f871b4e03a9235517: 0.7
+    - _Alpha: 1
+    - _BodyTextureOffsetSpeed: 0
+    - _CorruptionValue: 0.32
     - _HandMask: -0.5
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -82,6 +93,8 @@ Material:
     - Vector2_a2829562d6ed4fb19c79888e866156ac: {r: 1, g: 0, b: 0, a: 0}
     - Vector2_b45a7a65a4ae4f9fa6f41a26f8c6a13a: {r: 1, g: 2, b: 0, a: 0}
     - Vector2_caff66e718344f75bbd0b450c4a5b95e: {r: 0, g: 0, b: 0, a: 0}
+    - _BodyPingOffsetSpeed: {r: 0, g: 1, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
     - _Offset: {r: 0, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6565778224243048558

@@ -70,7 +70,7 @@ public class Vignette : MonoBehaviour
         lifeTime = Time.time - startTime;
         if (lifeTime > maxLifetime) {
             // only if player hasn't gone in yet.. need to do smtg with MakeHidden otherwise
-            if (vignetteMaterial.GetFloat("_WholeMask") == -1) CleanUp();
+            if (vignetteMaterial.GetFloat("_WholeMask") == -1) CleanUp(gameObject);
         }
     }
 
@@ -78,7 +78,7 @@ public class Vignette : MonoBehaviour
         distFromPlayer = Vector3.Distance(gameObject.transform.position, player.transform.position);
         if (distFromPlayer > maxDistFromPlayer) {
             Debug.Log("Too far. Cleaning vignette.");
-            CleanUp();
+            CleanUp(gameObject);
         }
     }
 
@@ -125,13 +125,14 @@ public class Vignette : MonoBehaviour
         // vignetteMusic.Stop();
         // foreach (AudioSource a in amb) a.Play();
 
-        CleanUp();
+        CleanUp(gameObject);
     }
 
-    void CleanUp()
+    void CleanUp(GameObject v)
     {
         vmanager.activeNum--;
-        Destroy(gameObject);
+        vmanager.vignettes.Add(v);
+        Destroy(v);
     }
 
     private void OnDrawGizmos() {
