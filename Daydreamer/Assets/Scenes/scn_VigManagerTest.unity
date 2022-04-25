@@ -1865,7 +1865,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 285702238}
-  m_LocalRotation: {x: 0.15572764, y: 0.0240174, z: -0.0070014414, w: 0.98748326}
+  m_LocalRotation: {x: 0.15572764, y: 0.0240174, z: -0.0070014405, w: 0.98748326}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2119,7 +2119,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310474382}
-  m_LocalRotation: {x: 0.14935842, y: 0.044672437, z: -0.0067550237, w: 0.9877504}
+  m_LocalRotation: {x: 0.1493584, y: 0.044672437, z: -0.0067550237, w: 0.9877504}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7437,7 +7437,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 349902934}
-  m_LocalRotation: {x: 0.12388183, y: 0.07541222, z: -0.004676626, w: 0.98941624}
+  m_LocalRotation: {x: 0.12388182, y: 0.07541222, z: -0.004676625, w: 0.98941624}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10500,7 +10500,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024221931}
-  m_LocalRotation: {x: 0.072710134, y: -0.028416429, z: 0.0020724304, w: 0.9969461}
+  m_LocalRotation: {x: 0.07271013, y: -0.02841643, z: 0.0020724298, w: 0.9969461}
   m_LocalPosition: {x: 0.5258656, y: 2.375, z: -4.7313404}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10613,7 +10613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1142735055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16624,7 +16624,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262452693}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
   m_Name: 
@@ -17888,14 +17888,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'This is where text will show up.
+  m_text: 'sfjhbjhghsdfg WASD move, mouse look around, E interact
 
-    WASD to move.
+    aaaa
 
-    Use the mouse
-    to look around.
+    aaaa
 
-    Press E to interact. 4 lines max per box.'
+    aaaa'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
