@@ -96,11 +96,12 @@ Material:
     - _BodyTextureOffsetSpeed: 0
     - _CorruptionValue: 0.02
     - _HandMask: -1
+    - _HueOffset: 10
     - _Max: 0
     - _Min: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _WholeMask: -1
+    - _WholeMask: 1
     - _max: 0
     - _min: 0
     m_Colors:
@@ -113,6 +114,8 @@ Material:
     - Vector2_caff66e718344f75bbd0b450c4a5b95e: {r: 0, g: 0, b: 0, a: 0}
     - _BodyColor: {r: 0.011347455, g: 0.035054643, b: 0.14150941, a: 0}
     - _BodyPingOffsetSpeed: {r: 0, g: 1, b: 0, a: 0}
+    - _BodyTextureOffsetSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _BodyTextureTiling: {r: 1, g: 1, b: 0, a: 0}
     - _Color: {r: 0.04125135, g: 0.046073604, b: 0.084905684, a: 0}
     - _Offset: {r: 0, g: 0.3, b: 0, a: 0}
   m_BuildTextureStacks: []

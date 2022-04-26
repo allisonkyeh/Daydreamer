@@ -37,7 +37,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_c7f2546d23e84107a3680ce404b03fc9:
-        m_Texture: {fileID: 2800000, guid: 08c79650044c9480589335937ac9ea45, type: 3}
+        m_Texture: {fileID: 2800000, guid: 688b1d510c9e3448cbd0e5090de6f9b2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_ee367b863d1e428f89df57fdc5abf2dc:
@@ -83,7 +83,7 @@ Material:
     m_Ints: []
     m_Floats:
     - Vector1_11a3f773e6514ee99e15711d5a97bf33: -2
-    - Vector1_4cd03d7b2efb4915bacc546c5fbccab2: 1
+    - Vector1_4cd03d7b2efb4915bacc546c5fbccab2: 0.1
     - Vector1_65aecc276af74ee099e651767380a5e7: -1
     - Vector1_8db20cea9b8646bfb0b7281d9b2195ed: 1
     - Vector1_9119a77f898e4831a3769ebd713ed317: 5
@@ -96,6 +96,7 @@ Material:
     - _BodyTextureOffsetSpeed: 0
     - _CorruptionValue: 0.092
     - _HandMask: -1
+    - _HueOffset: 10
     - _Max: 0
     - _Min: 0
     - _QueueControl: 0
@@ -105,14 +106,16 @@ Material:
     - _min: 0
     m_Colors:
     - Color_4f2da59e4b9b49f392723a50ac7ac204: {r: 0.3962264, g: 0.27983916, b: 0.14017443, a: 0}
-    - Color_4f5bbd86720e4b5c85b725167a548d82: {r: 1, g: 0.87771446, b: 0, a: 0}
+    - Color_4f5bbd86720e4b5c85b725167a548d82: {r: 1, g: 0.98566407, b: 0.8820755, a: 0}
     - Color_796fe05f9a4946b19ad3ef1d62d86ca7: {r: 1, g: 0, b: 0, a: 0}
-    - Vector2_8d111400d2794971b7521e1a2dc74b78: {r: 1, g: 3, b: 0, a: 0}
+    - Vector2_8d111400d2794971b7521e1a2dc74b78: {r: 1, g: 1, b: 0, a: 0}
     - Vector2_a2829562d6ed4fb19c79888e866156ac: {r: 1, g: 0, b: 0, a: 0}
-    - Vector2_b45a7a65a4ae4f9fa6f41a26f8c6a13a: {r: 1, g: 4.53, b: 0, a: 0}
+    - Vector2_b45a7a65a4ae4f9fa6f41a26f8c6a13a: {r: 1, g: 1, b: 0, a: 0}
     - Vector2_caff66e718344f75bbd0b450c4a5b95e: {r: 0, g: 0, b: 0, a: 0}
     - _BodyColor: {r: 0.14150941, g: 0.053673014, b: 0.036712352, a: 0}
     - _BodyPingOffsetSpeed: {r: 0, g: 1, b: 0, a: 0}
-    - _Color: {r: 0.11320752, g: 0.06312741, b: 0.0069419737, a: 0}
+    - _BodyTextureOffsetSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _BodyTextureTiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Color: {r: 0.11320752, g: 0.07121588, b: 0.020825913, a: 0}
     - _Offset: {r: 0, g: 0.3, b: 0, a: 0}
   m_BuildTextureStacks: []

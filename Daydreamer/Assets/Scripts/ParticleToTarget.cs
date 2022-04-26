@@ -14,6 +14,8 @@ public class ParticleToTarget : MonoBehaviour {
     void Start () {
         p = GetComponent<ParticleSystem> ();
         sqrDist = affectDistance * affectDistance;
+
+        Target = GameObject.Find("NPCTarget").transform;
     }
 
 
