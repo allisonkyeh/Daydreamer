@@ -5412,7 +5412,7 @@ MonoBehaviour:
   temp: 0
   inhabited: 1
   vignetteCol: {fileID: 3678655044457613671}
-  vignetteMaterial: {fileID: 2100000, guid: b467b1a55a29540a7aa5d95676036056, type: 2}
+  vignetteMaterial: {fileID: 2100000, guid: 43f718f993a324db89481b6bfd4de996, type: 2}
   maxDistFromPlayer: 45
   lerpDuration: 3
   maxLifetime: Infinity

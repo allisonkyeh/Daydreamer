@@ -41,7 +41,7 @@ public class PlayerShell : MonoBehaviour
     }
 
     void Start() {
-        InvokeRepeating("Corrupt", 1.0f, 1.0f);
+        InvokeRepeating("Corrupt", 11.0f, 1.0f);
     }
 
     void Update() {
@@ -104,7 +104,6 @@ public class PlayerShell : MonoBehaviour
     {
         yield return null;
     }
-
 
 }
 
