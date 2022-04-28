@@ -131,8 +131,10 @@ public class Vignette : MonoBehaviour
     void CleanUp(GameObject v)
     {
         vmanager.activeNum--;
+
         vmanager.vignettes.Add(v);
-        Destroy(v);
+        v.SetActive(false);
+        // Destroy(v);
     }
 
     private void OnDrawGizmos() {

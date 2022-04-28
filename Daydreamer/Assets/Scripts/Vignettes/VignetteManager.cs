@@ -15,7 +15,8 @@ public class VignetteManager : MonoBehaviour
     [SerializeField] public int     activeMax;
     [HideInInspector]
     public int activeNum = 0;
-    [HideInInspector]
+    [Space]
+    [SerializeField]
     public List<GameObject> activeVignettes = new List<GameObject>();
     private int vignetteLayer => LayerMask.NameToLayer("Vignette");
 

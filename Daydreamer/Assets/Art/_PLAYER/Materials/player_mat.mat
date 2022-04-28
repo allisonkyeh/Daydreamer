@@ -82,7 +82,7 @@ Material:
     - _Alpha: 1
     - _BodyAlpha: 0.408
     - _BodyTextureOffsetSpeed: 0.05
-    - _CorruptionValue: 0.05000002
+    - _CorruptionValue: 0.10999824
     - _HandMask: -1
     - _HueOffset: 10
     - _Max: 0.05
@@ -104,7 +104,7 @@ Material:
     - _BodyPingOffsetSpeed: {r: 0.1, g: 0, b: 0, a: 0}
     - _BodyTextureOffsetSpeed: {r: 0, g: 0.05, b: 0, a: 0}
     - _BodyTextureTiling: {r: 1, g: 1, b: 0, a: 0}
-    - _Color: {r: 1, g: 0.7800002, b: 0.7800002, a: 1}
+    - _Color: {r: 1, g: 0.6000004, b: 0.6000004, a: 1}
     - _Offset: {r: 0, g: 0.3, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8698270844900655529
