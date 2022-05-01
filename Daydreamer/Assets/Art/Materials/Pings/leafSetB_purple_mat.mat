@@ -88,7 +88,7 @@ Material:
     m_Floats:
     - Vector1_11a3f773e6514ee99e15711d5a97bf33: -2
     - Vector1_3809765A: 0
-    - Vector1_4cd03d7b2efb4915bacc546c5fbccab2: 1.55
+    - Vector1_4cd03d7b2efb4915bacc546c5fbccab2: 0.3
     - Vector1_65aecc276af74ee099e651767380a5e7: -1
     - Vector1_6C1233FD: 1
     - Vector1_854D61AC: 124
@@ -111,7 +111,7 @@ Material:
     - _Min: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _WholeMask: -1
+    - _WholeMask: 1
     - _max: 0
     - _min: 0
     m_Colors:
@@ -121,12 +121,12 @@ Material:
     - Vector2_8d111400d2794971b7521e1a2dc74b78: {r: 1, g: 1, b: 0, a: 0}
     - Vector2_BB195B3F: {r: 2, g: 0, b: 0, a: 0}
     - Vector2_a2829562d6ed4fb19c79888e866156ac: {r: 1, g: 0, b: 0, a: 0}
-    - Vector2_b45a7a65a4ae4f9fa6f41a26f8c6a13a: {r: 1, g: 2.86, b: 0, a: 0}
+    - Vector2_b45a7a65a4ae4f9fa6f41a26f8c6a13a: {r: 5.84, g: 2.41, b: 0, a: 0}
     - Vector2_caff66e718344f75bbd0b450c4a5b95e: {r: 0, g: 0, b: 0, a: 0}
     - _BodyColor: {r: 0.011347455, g: 0.035054643, b: 0.14150941, a: 0}
     - _BodyPingOffsetSpeed: {r: 0, g: -0.05, b: 0, a: 0}
     - _BodyTextureOffsetSpeed: {r: 0, g: 0, b: 0, a: 0}
     - _BodyTextureTiling: {r: 1, g: 1, b: 0, a: 0}
-    - _Color: {r: 0.8282902, g: 0.35555357, b: 0.8867924, a: 0}
+    - _Color: {r: 0.5727138, g: 0.35686272, b: 0.8862745, a: 0}
     - _Offset: {r: 0, g: 0.3, b: 0, a: 0}
   m_BuildTextureStacks: []

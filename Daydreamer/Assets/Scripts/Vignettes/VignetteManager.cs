@@ -26,7 +26,7 @@ public class VignetteManager : MonoBehaviour
         // Vector3 newPos = player.transform.forward + Vector3(0, 0, 10);
         // GameObject v = (GameObject) Instantiate(vignettes[0], newPos, Quaternion.identity);
 
-        InvokeRepeating("Spawn", 10.0f, spawnRate);
+        InvokeRepeating("Spawn", 20.0f, spawnRate);
     }
 
     void Spawn()

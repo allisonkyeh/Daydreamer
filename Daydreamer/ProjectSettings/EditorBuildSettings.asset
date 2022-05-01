@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/scn_RoomSparkly.unity
     guid: 019b4975134ab4256a7e68f8f0efe6a4
   - enabled: 0
-    path: Assets/Scenes/scn_GLOBAL.unity
+    path: Assets/Scenes/scn_notGLOBAL.unity
     guid: ffdf6390e696a4c89b80e5300c20512b
   - enabled: 0
     path: Assets/Scenes/scn_VignetteTest.unity

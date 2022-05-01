@@ -91,7 +91,7 @@ Material:
     - Vector1_d090a899e73a46e7bc8cec20a0fb5f08: 0
     - Vector1_d0b2a0cc48de413d8908c7b16417c5cb: 1
     - Vector1_eb160254423e493f871b4e03a9235517: 0.1
-    - _Alpha: 0.213
+    - _Alpha: 0.138
     - _BodyAlpha: 0.565
     - _BodyTextureOffsetSpeed: 0
     - _CorruptionValue: 0.458
@@ -101,7 +101,7 @@ Material:
     - _Min: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _WholeMask: -1
+    - _WholeMask: 0.7239337
     - _max: 0
     - _min: 0
     m_Colors:

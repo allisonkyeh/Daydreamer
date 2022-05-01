@@ -5,13 +5,18 @@ public class DialogueActivator : MonoBehaviour, IInteractable
 {
     [SerializeField] private DialogueObject dialogueObject;
     [SerializeField] private ParticleSystem particles;
+    private Wisp w;
 
+    private void Awake() {
+        w = this.GetComponent<Wisp>();
+    }
 
     private void OnTriggerEnter(Collider other) {
         // checks for player tag and player component
         if (other.CompareTag("Player") && other.TryGetComponent(out PlayerController player)) {
             player.Interactable = this;
         }
+
     }
 
     private void OnTriggerExit(Collider other) {
@@ -20,11 +25,11 @@ public class DialogueActivator : MonoBehaviour, IInteractable
                 player.Interactable = null;
             }
         }
-        if (particles.isPlaying) particles.Stop();
     }
 
-    public void Interact (PlayerController player) {
+    public void Interact (PlayerController player, Animator anim) {
         particles.Play();
+        StartCoroutine(w.Die(particles, anim));
         player.DialogueUI.ShowDialogue(dialogueObject);
     }
 }

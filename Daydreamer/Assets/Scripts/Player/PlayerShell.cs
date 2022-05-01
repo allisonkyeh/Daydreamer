@@ -16,7 +16,7 @@ public class PlayerShell : MonoBehaviour
     private Color   addColor;
     private Color   targetColor;
     Collider        playerCol;
-    // var         playerCollision;
+    private Animator anim;
 
     /***** DISSOLVE TIMING *****/
     [SerializeField] public float deathDuration;
@@ -27,17 +27,16 @@ public class PlayerShell : MonoBehaviour
 
     private float pingpongCorruption = 0;
     [SerializeField] private float pingpongSpeed;
-    [SerializeField] private float pingpongThreshold = 0.1f;
+    [SerializeField] private float pingpongThreshold = 0.1f; // at what corruption point to start pingponging
 
 
     private void Awake() {
-        targetColor = new Color(1, 0, 0, 1); //red
+        targetColor = new Color(0.7f, 0, 0, 1); //red
         addColor = new Color(1, 1, 1, 1);
         shellMat.SetFloat("_CorruptionValue", 0.02f);
         shellMat.SetColor("_Color", addColor);
         shellMat.SetFloat("_WholeMask", 1);
-
-        // playerCollision = GetComponent(PlayerCollision);
+        anim = this.gameObject.transform.GetChild(1).GetComponent<Animator>();
     }
 
     void Start() {
@@ -51,6 +50,8 @@ public class PlayerShell : MonoBehaviour
             pingpongCorruption = Mathf.PingPong(Time.time / 2f, corruptionValue) + 0.02f;
             shellMat.SetFloat("_CorruptionValue", pingpongCorruption);
         }
+        anim.SetFloat("Corruption", corruptionValue);
+
     }
 
     void Corrupt() {
@@ -64,7 +65,7 @@ public class PlayerShell : MonoBehaviour
             if (currentColor != targetColor) {
                 addColor.g -= 0.02f;
                 addColor.b -= 0.02f;
-            } else if (currentColor == targetColor && !dying) {
+            } else if (currentColor.r >= targetColor.r && !dying) {
                 StartCoroutine(Death());
             }
 
@@ -99,7 +100,7 @@ public class PlayerShell : MonoBehaviour
         shellMat.SetFloat("_WholeMask", -1);
     }
 
-    // TODO:
+    // TODO: lol itll never revive
     IEnumerator Revive()
     {
         yield return null;

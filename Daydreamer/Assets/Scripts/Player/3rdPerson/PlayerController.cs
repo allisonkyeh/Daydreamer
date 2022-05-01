@@ -85,7 +85,9 @@ public class PlayerController : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.E)) {
-            Interactable?.Interact(this);  // if Interactable != null
+            anim.SetBool("Absorbing", true);
+            Interactable?.Interact(this, anim);  // if Interactable != null
+
         }
 
     }
