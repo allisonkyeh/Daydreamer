@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: vigGreen_mat
+  m_Name: 3text_mat
   m_Shader: {fileID: -6465566751694194690, guid: 53342d8bcd6ec430a9d5b20c7ab85b75, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -33,11 +33,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_58991c1e5f8142c2a71c5915277f5389:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 4b05b680f56a644c4937ecc3904f172d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_B79977FA:
+        m_Texture: {fileID: 2800000, guid: 8b87b1ee1c97e40c0a3f9d69e984fad5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_c7f2546d23e84107a3680ce404b03fc9:
-        m_Texture: {fileID: 2800000, guid: f93f02bac7d764c9693a395ab0ede9b9, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_ee367b863d1e428f89df57fdc5abf2dc:
@@ -45,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BodyPingMask:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 688b1d510c9e3448cbd0e5090de6f9b2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HandTexture:
@@ -83,18 +87,24 @@ Material:
     m_Ints: []
     m_Floats:
     - Vector1_11a3f773e6514ee99e15711d5a97bf33: -2
-    - Vector1_4cd03d7b2efb4915bacc546c5fbccab2: 1
+    - Vector1_3809765A: 0
+    - Vector1_4cd03d7b2efb4915bacc546c5fbccab2: 0.3
     - Vector1_65aecc276af74ee099e651767380a5e7: -1
-    - Vector1_8db20cea9b8646bfb0b7281d9b2195ed: 1
-    - Vector1_9119a77f898e4831a3769ebd713ed317: 5
-    - Vector1_a733b1ccabb44d358fb023bf798c478b: 2.21
+    - Vector1_6C1233FD: 1
+    - Vector1_854D61AC: 124
+    - Vector1_89EB340: 0.3
+    - Vector1_8db20cea9b8646bfb0b7281d9b2195ed: 0.32
+    - Vector1_9119a77f898e4831a3769ebd713ed317: 68.5
+    - Vector1_E7B459BE: 0.2
+    - Vector1_a733b1ccabb44d358fb023bf798c478b: 5.9
     - Vector1_d090a899e73a46e7bc8cec20a0fb5f08: 0
     - Vector1_d0b2a0cc48de413d8908c7b16417c5cb: 1
     - Vector1_eb160254423e493f871b4e03a9235517: 0.1
-    - _Alpha: 0.08
+    - _Alpha: 0.665
     - _BodyAlpha: 0.565
     - _BodyTextureOffsetSpeed: 0
-    - _CorruptionValue: 0.458
+    - _ColorRange: 0
+    - _CorruptionValue: 0.081
     - _HandMask: -1
     - _HueOffset: 10
     - _Max: 0
@@ -106,16 +116,17 @@ Material:
     - _min: 0
     m_Colors:
     - Color_4f2da59e4b9b49f392723a50ac7ac204: {r: 0.3962264, g: 0.27983916, b: 0.14017443, a: 0}
-    - Color_4f5bbd86720e4b5c85b725167a548d82: {r: 0.8402729, g: 0, b: 1, a: 0}
+    - Color_4f5bbd86720e4b5c85b725167a548d82: {r: 0, g: 0, b: 0, a: 0}
     - Color_796fe05f9a4946b19ad3ef1d62d86ca7: {r: 1, g: 0, b: 0, a: 0}
-    - Vector2_8d111400d2794971b7521e1a2dc74b78: {r: 1, g: 3, b: 0, a: 0}
+    - Vector2_8d111400d2794971b7521e1a2dc74b78: {r: 1, g: 1, b: 0, a: 0}
+    - Vector2_BB195B3F: {r: 2, g: 0, b: 0, a: 0}
     - Vector2_a2829562d6ed4fb19c79888e866156ac: {r: 1, g: 0, b: 0, a: 0}
-    - Vector2_b45a7a65a4ae4f9fa6f41a26f8c6a13a: {r: 1, g: 4.53, b: 0, a: 0}
+    - Vector2_b45a7a65a4ae4f9fa6f41a26f8c6a13a: {r: 1, g: 1, b: 0, a: 0}
     - Vector2_caff66e718344f75bbd0b450c4a5b95e: {r: 0, g: 0, b: 0, a: 0}
     - _BodyColor: {r: 0.011347455, g: 0.035054643, b: 0.14150941, a: 0}
-    - _BodyPingOffsetSpeed: {r: 0, g: 1, b: 0, a: 0}
+    - _BodyPingOffsetSpeed: {r: 0, g: -0.05, b: 0, a: 0}
     - _BodyTextureOffsetSpeed: {r: 0, g: 0, b: 0, a: 0}
     - _BodyTextureTiling: {r: 1, g: 1, b: 0, a: 0}
-    - _Color: {r: 0.071155205, g: 0.3679245, b: 0.12666601, a: 0}
+    - _Color: {r: 0.93333334, g: 0.3921569, b: 0.4706192, a: 0}
     - _Offset: {r: 0, g: 0.3, b: 0, a: 0}
   m_BuildTextureStacks: []
